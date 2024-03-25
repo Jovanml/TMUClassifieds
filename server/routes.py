@@ -9,7 +9,10 @@ import datetime
 import os
 from dotenv import load_dotenv
 
+#how to start the app
 #flask --app routes --debug run
+#link to download the json of the postman requests i used
+#https://api.postman.com/collections/33183912-40bc2e75-e994-4456-bf30-897602d92c7e?access_key=PMAT-01HSVFHWMKWW82JA8KB0NMECA9
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
