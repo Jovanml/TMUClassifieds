@@ -1,0 +1,54 @@
+.message {
+    display: flex;
+    align-items: center;
+}
+
+.sent .messageDiv{
+    text-align: right;
+    margin-right: 4px;
+}
+
+.received .messageDiv{
+    text-align: left;
+    margin-left: 4px;
+}
+
+.messageText {
+    max-width: 40vw;
+    margin-bottom: 0;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+    display: inline-flex;
+}
+
+.messageTime{
+    margin-top: 0;
+    font-size: small;
+}
+
+.sent .messageTime{
+    text-align: right;
+}
+
+.received .messageTime{
+    text-align: left;
+}
+
+.sent {
+    flex-direction: row-reverse;
+}
+  
+.sent .messageText {
+    color: white;
+    background: #0E6BC4;
+    align-self: flex-end;
+}
+
+.received .messageText {
+    background: #e5e5ea;
+    color: black;
+}

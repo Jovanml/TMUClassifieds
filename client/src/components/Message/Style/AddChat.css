@@ -1,0 +1,26 @@
+#newChatUsers{
+    overflow-y: auto;
+}
+
+.singleAddChat{
+    display: flex;
+    border: 2px solid white;
+    align-items: center;
+    padding-left: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.singleAddChat:hover{
+    cursor: pointer;
+    border: 2px solid black;;
+}
+
+.addChatUserName{
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 550;
+    line-height: 30.26px;
+    text-align: center;
+    margin-left: 15px;
+}
