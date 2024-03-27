@@ -24,10 +24,7 @@ const Reducer = (state, action) => {
     }
 }
 
-export const GlobalContext = createContext({
-    state: initialState, 
-    dispatch: () => null
-})
+export const GlobalContext = createContext(initialState);
 
 export const GlobalContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(Reducer, initialState);
