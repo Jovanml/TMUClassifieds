@@ -9,7 +9,7 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 // Styles
-import './header.css';
+import './Header.css';
 
 // Packages
 import { useMediaQuery } from '@mui/material';
