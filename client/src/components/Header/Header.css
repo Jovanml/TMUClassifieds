@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.headerMobile {
+  padding: 2rem;
+}
+
 .logo {
   display: flex;
   justify-content: center;
@@ -26,6 +30,10 @@
   border-radius: 1rem;
   box-shadow: 0 4px 6px -1px #d1d5db, 0 2px 4px -2px #d1d5db;
   padding: 1rem;
+}
+
+.mobileSearchBar {
+  margin-top: 1rem;
 }
 
 .searchTextBar {
