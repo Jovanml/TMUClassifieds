@@ -26,11 +26,11 @@ const Header = () => {
         </a>
         {!isMobile && (
           <div className='searchBar'>
-            <img className='w-5' src={searchIcon} alt='search' />
-            <div className='w-96'>
-              <input className='w-full focus-visible: outline-none' name='searchInput' placeholder='Search TMUFinds'/>
+            <img src={searchIcon} alt='search' />
+            <div>
+              <input className='searchTextBar' name='searchInput' placeholder='Search TMUFinds'/>
             </div>
-            <button className='bg-black text-white px-4 py-3 rounded-md'>
+            <button className='searchButton'>
               Search
             </button>
           </div>
