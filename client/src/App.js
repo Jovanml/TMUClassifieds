@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Login from './pages/Login';
+import Login from './components/Login/login';
 import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
 import { auth } from './services/auth';
