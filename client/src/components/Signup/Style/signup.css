@@ -1,0 +1,152 @@
+body{
+  background-color: #f1f4ff;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #0E6BC4;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.title {
+  margin-left: 1rem;
+  font-size: 2rem;
+  color: #fcba2c;
+}
+
+.App-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.SignUp-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.sign-up {
+  color: #333333;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 300px;
+  margin: 2rem; 
+}
+
+.sign-up h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem; 
+}
+
+.social-sign-up {
+  margin-bottom: 1.5rem; 
+}
+
+.google-sign-up {
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  font-weight: bold;
+  background-color: #FFFFFF;
+  color: #333333;
+  padding: 1rem 2rem;
+  border: .5px solid black; 
+  border-radius: 10px; 
+  cursor: pointer;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem; 
+}
+
+.or-line {
+  width: 49%;
+  height: 1px;
+  background-color: #d9d9d9;
+}
+
+.or-separator span {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem; 
+}
+
+.sign-up-form label {
+  color: #707070;
+  margin-bottom: 0.5rem; 
+  font-weight: bold;
+  display: block;
+  text-align: left;
+}
+
+.sign-up-form input {
+  padding: 1rem;
+  margin-bottom: 1rem; 
+}
+
+.sign-up-button {
+  background-color: #c3c3c3; 
+  color: #ffffff; 
+  padding: 1rem 3rem; 
+  border: none; 
+  border-radius: 20px; 
+  font-size: 1rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.sign-up-button:hover {
+  background-color: #555555; 
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.enter-email-message {
+  color: #707070;
+  font-size: 0.75em; 
+  margin-bottom: 1.5rem;
+}
+
+.sign-in-message {
+  margin-top: 1rem; 
+  color:#333333;
+  font-size: 0.8rem;
+}

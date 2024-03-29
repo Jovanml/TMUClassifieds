@@ -2,6 +2,7 @@ import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login/login';
+import SignUp from './components/Signup/signup';
 import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
 import { auth } from './services/auth';
@@ -25,6 +26,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<>Landing Page</>}/>
                 <Route path='login' element={<Login />}/>
+                <Route path='signup' element={<SignUp />}/>
             </Routes>
         </BrowserRouter>
   );
