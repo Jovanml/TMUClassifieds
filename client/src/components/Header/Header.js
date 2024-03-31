@@ -40,19 +40,19 @@ const Header = () => {
   const mobileSearch = (
     <>
       <button 
-        className='buttonCircle'
+        className='btn-circle'
         onClick={() => {
           setMobileSearchClicked(false)
         }}
       >
         <XMarkIcon className='w-5 h-5' />
       </button>
-      <div className='searchBar mobileSearchBar'>
+      <div className='search-bar search-bar-mobile'>
         <img src={searchIcon} alt='search' />
         <div>
-          <input className='searchTextBar' name='searchInput' placeholder='Search TMUFinds' />
+          <input className='search-text-input' name='search-input' placeholder='Search TMUFinds' />
         </div>
-        <button className='searchButton'>
+        <button className='search-btn'>
           Search
         </button>
       </div>
@@ -61,7 +61,7 @@ const Header = () => {
 
   if (mobileSearchClicked) {
     return (
-      <header className='headerMobile'>
+      <header className='header-mobile'>
         {mobileSearch}
       </header>
     )
@@ -74,20 +74,20 @@ const Header = () => {
         <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
       </a>
       {!isMobile && (
-        <div className='searchBar'>
+        <div className='search-bar'>
           <img src={searchIcon} alt='search' />
           <div>
-            <input className='searchTextBar' name='searchInput' placeholder='Search TMUFinds'/>
+            <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
           </div>
-          <button className='searchButton'>
+          <button className='search-btn'>
             Search
           </button>
         </div>
       )}
-      <div className='headerButtons'>
+      <div className='header-btns'>
         {isMobile && (
           <button 
-            className='buttonCircle' 
+            className='btn-circle' 
             onClick={() => {
               setMobileSearchClicked(true)
             }}
@@ -95,10 +95,10 @@ const Header = () => {
             <MagnifyingGlassIcon className='w-9 h-9' />
           </button>
         )}
-        <button className='buttonCircle'>
+        <button className='btn-circle'>
           <ChatBubbleOvalLeftIcon className='w-9 h-9'/>
         </button>
-        <button className='buttonCircle'>
+        <button className='btn-circle'>
           <PlusCircleIcon className='w-9 h-9' />
         </button>
         <button className='px-3 py-2 flex justify-center items-center gap-1 border border-gray-300 rounded-full shadow-md shadow-gray-300'>
