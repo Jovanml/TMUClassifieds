@@ -10,6 +10,7 @@ import ListingCard from "./listings/ListingCard";
 import './Homepage.css';
 
 import tempPhoto from '../assets/tempPhoto.jpg'
+import Modal from "./modals/Modal";
 
 
 const Homepage = () => {
@@ -20,6 +21,7 @@ const Homepage = () => {
 
   return (
     <>
+      <Modal/>
       <Header />
       <Categories />
       <div className='listing-cards-container'>
