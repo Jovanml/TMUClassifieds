@@ -1,0 +1,26 @@
+.listing-cards-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 2.5rem;
+  padding: 1rem 2rem;
+}
+
+@media screen and (min-width: 640px) {
+  .listing-cards-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .listing-cards-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .listing-cards-container {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+

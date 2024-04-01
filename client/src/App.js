@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header.js';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
           - add paths for other pages
           - route the buttons in header
         */}
-        <Route path='/' element={<Header />} />
+        <Route path='/' element={<Homepage />} />
       </Routes>
     </BrowserRouter>
   );
