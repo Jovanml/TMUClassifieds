@@ -1,6 +1,6 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // Icons
@@ -14,12 +14,17 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 import './Header.css';
 
 
-const Header = () => {
+const Header = ({currentUser}) => {
 
   const mobileBreakpoint = '(max-width: 640px)'
 
   const isMobile = useMediaQuery(mobileBreakpoint);
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const toggleMenuOpen = useCallback(() => {
+    setMenuIsOpen(value => !value);
+  }, [])
 
   useEffect(() => {
     // function to handle window resize
@@ -98,10 +103,36 @@ const Header = () => {
         <button className='btn-circle'>
           <PlusCircleIcon className='w-9 h-9' />
         </button>
-        <button className='px-3 py-2 flex justify-center items-center gap-1 border border-gray-300 rounded-full shadow-md shadow-gray-300'>
-          <Bars3Icon className='w-9 h-9' />
-          <UserCircleIcon className='w-9 h-9' />
-        </button>
+        <div className='menu'>
+          <button 
+            className='wide-btn-circle btn-circle'
+            onClick={toggleMenuOpen}
+          >
+            <Bars3Icon className='w-9 h-9' />
+            <UserCircleIcon className='w-9 h-9' />
+          </button>
+          {menuIsOpen && (
+            <div className='menu-opened'>
+              {currentUser ? (
+                <Link to={'/logout'}>
+                  <div 
+                    className='menu-item'
+                  >
+                    Logout
+                  </div>
+                </Link>
+              ) : (
+                <Link to={'/login'}>
+                  <div 
+                    className='menu-item'
+                  >
+                    Login
+                  </div>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
