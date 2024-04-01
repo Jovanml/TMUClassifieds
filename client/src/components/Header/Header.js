@@ -1,6 +1,7 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -66,9 +67,9 @@ const Header = () => {
 
   return (
     <header className='header'>
-      <a href='/' className='logo'>
+      <Link to={'/'} className='logo'>
         <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
-      </a>
+      </Link>
       {!isMobile && (
         <div className='search-bar'>
           <img src={searchIcon} alt='search' />
