@@ -6,12 +6,8 @@ import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.svg';
 import searchIcon from '../../assets/searchIcon.svg';
 
-import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { ChatBubbleOvalLeftIcon, PlusCircleIcon, Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // Styles
 import './Header.css';
