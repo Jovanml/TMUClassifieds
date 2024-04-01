@@ -1,0 +1,24 @@
+.heading-text-center {
+  text-align: center;
+}
+
+.heading-text-start {
+  text-align: start;
+}
+
+.heading-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.heading-subheading {
+  font-weight: 300;
+  color: rgb(115 115 115 / 1);
+  margin-top: 0.25rem;
+}
+
+.heading-subtitle {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
