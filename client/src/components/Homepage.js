@@ -2,9 +2,9 @@
 // import { useEffect } from "react";
 
 // Components
-import Header from "./Header/Header";
-import Categories from "./Categories/Categories";
-import ListingCard from "./ListingCard/ListingCard";
+import Header from "./header/Header";
+import Categories from "./categories/Categories";
+import ListingCard from "./listings/ListingCard";
 
 // Styles
 import './Homepage.css';
