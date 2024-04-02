@@ -1,3 +1,6 @@
+// Styles
+import './Heading.css';
+
 const Heading = ({
   title, // string
   subtitle, // string
