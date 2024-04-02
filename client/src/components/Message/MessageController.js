@@ -38,6 +38,9 @@ function MessageController({ user }) {
                     })
                 }
             })
+            .catch(e)(err => {
+                console.error(err)
+            })
         }
         fetchConvos()
     }, [messageUserID])
@@ -60,6 +63,9 @@ function MessageController({ user }) {
                 'messageUserName': mN
             })
         })
+        .catch(e)(err => {
+            console.error(err)
+        })
     }
 
     if (messageUserID === '') {
@@ -78,5 +84,3 @@ function MessageController({ user }) {
 }
 
 export default MessageController
-
-//<MessagePage user={user} usersConvo={usersConvo} messageUserID={messageUserID} setMessageUserID={setMessageUserID} />
