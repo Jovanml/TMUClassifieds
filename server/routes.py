@@ -1,3 +1,5 @@
+import re
+from unicodedata import category
 from flask import Flask, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -260,10 +262,13 @@ def getData():
     priceLess = request.args.get('priceLess')
     priceMore = request.args.get('priceMore')
     search = request.args.get('search')
+    category = request.args.get('category')
     returnData = []
     query = {"bought": "false", "banned": "false"}
     if location is not None:
         query["location"] = location
+    if category is not None:
+        query["type"] = category
     if search is not None:
         query["$or"] = [{'title':  {'$regex': f'{search}'}}, {'description':  {'$regex': f'{search}'}}]
     if priceLess is not None and priceMore is None:
