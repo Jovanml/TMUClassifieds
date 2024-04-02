@@ -20,9 +20,10 @@ const Button = ({
         >
           <Link 
             to={btnLink} 
+            className='btn-with-link'
           >
               {icon && (
-                <div className='btn-icon'>
+                <div>
                   {icon}
                 </div>
               )}

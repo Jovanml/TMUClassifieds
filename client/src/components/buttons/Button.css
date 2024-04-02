@@ -1,4 +1,8 @@
 .btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   position: relative;
   width: 100%;
   padding: 0.75rem 0;
@@ -21,8 +25,9 @@
   opacity: 0.5;
 }
 
-.btn-icon {
-  position: absolute;
-  top: 0.75rem;
-  left: 1rem;
+.btn-with-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
