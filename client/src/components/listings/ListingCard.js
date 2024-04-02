@@ -1,11 +1,11 @@
 // Styles
 import './ListingCard.css';
 
-const ListingCard = ({imgSrc, price, title, location}) => {
+const ListingCard = ({imgSrc, price, title, location, onClick}) => {
   return (
     <div 
       className='card-container mb-2'
-      onClick={() => console.log('card clicked')}
+      onClick={onClick}
     >
       <div className='img-container'>
         <img src={imgSrc} alt='' />

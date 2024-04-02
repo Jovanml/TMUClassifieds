@@ -1,0 +1,39 @@
+.body-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.body-img-container {
+  display: flex;
+  background-color: rgb(107 114 128 / 1);
+  border-radius: 1rem;
+  object-fit: fill;
+  aspect-ratio: 1/1;
+
+  img {
+    aspect-ratio: 1/1;
+  }
+}
+
+.body-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.body-description-container {
+  display: grid;
+  grid-template-rows: minmax(0, 3fr) 0.5fr;
+  position: relative;
+}
+
+.body-description {
+  overflow-y: auto;
+}
+
+.body-heading {
+  font-weight: 700;
+}
+
+
