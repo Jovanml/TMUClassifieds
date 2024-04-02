@@ -1,28 +1,30 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
 import searchIcon from '../../assets/searchIcon.svg';
 
-import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { ChatBubbleOvalLeftIcon, PlusCircleIcon, Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // Styles
 import './Header.css';
 
 
-const Header = () => {
+const Header = ({currentUser}) => {
 
   const mobileBreakpoint = '(max-width: 640px)'
 
   const isMobile = useMediaQuery(mobileBreakpoint);
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const toggleMenuOpen = useCallback(() => {
+    setMenuIsOpen(value => !value);
+  }, [])
 
   useEffect(() => {
     // function to handle window resize
@@ -40,19 +42,19 @@ const Header = () => {
   const mobileSearch = (
     <>
       <button 
-        className='buttonCircle'
+        className='btn-circle'
         onClick={() => {
           setMobileSearchClicked(false)
         }}
       >
         <XMarkIcon className='w-5 h-5' />
       </button>
-      <div className='searchBar mobileSearchBar'>
+      <div className='search-bar search-bar-mobile'>
         <img src={searchIcon} alt='search' />
         <div>
-          <input className='searchTextBar' name='searchInput' placeholder='Search TMUFinds' />
+          <input className='search-text-input' name='search-input' placeholder='Search TMUFinds' />
         </div>
-        <button className='searchButton'>
+        <button className='search-btn'>
           Search
         </button>
       </div>
@@ -61,7 +63,7 @@ const Header = () => {
 
   if (mobileSearchClicked) {
     return (
-      <header className='headerMobile'>
+      <header className='header-mobile'>
         {mobileSearch}
       </header>
     )
@@ -70,24 +72,24 @@ const Header = () => {
 
   return (
     <header className='header'>
-      <a href='/' className='logo'>
+      <Link to={'/'} className='logo'>
         <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
-      </a>
+      </Link>
       {!isMobile && (
-        <div className='searchBar'>
+        <div className='search-bar'>
           <img src={searchIcon} alt='search' />
           <div>
-            <input className='searchTextBar' name='searchInput' placeholder='Search TMUFinds'/>
+            <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
           </div>
-          <button className='searchButton'>
+          <button className='search-btn'>
             Search
           </button>
         </div>
       )}
-      <div className='headerButtons'>
+      <div className='header-btns'>
         {isMobile && (
           <button 
-            className='buttonCircle' 
+            className='btn-circle' 
             onClick={() => {
               setMobileSearchClicked(true)
             }}
@@ -95,16 +97,42 @@ const Header = () => {
             <MagnifyingGlassIcon className='w-9 h-9' />
           </button>
         )}
-        <button className='buttonCircle'>
+        <button className='btn-circle'>
           <ChatBubbleOvalLeftIcon className='w-9 h-9'/>
         </button>
-        <button className='buttonCircle'>
+        <button className='btn-circle'>
           <PlusCircleIcon className='w-9 h-9' />
         </button>
-        <button className='px-3 py-2 flex justify-center items-center gap-1 border border-gray-300 rounded-full shadow-md shadow-gray-300'>
-          <Bars3Icon className='w-9 h-9' />
-          <UserCircleIcon className='w-9 h-9' />
-        </button>
+        <div className='menu'>
+          <button 
+            className='wide-btn-circle btn-circle'
+            onClick={toggleMenuOpen}
+          >
+            <Bars3Icon className='w-9 h-9' />
+            <UserCircleIcon className='w-9 h-9' />
+          </button>
+          {menuIsOpen && (
+            <div className='menu-opened'>
+              {currentUser ? (
+                <Link to={'/logout'}>
+                  <div 
+                    className='menu-item'
+                  >
+                    Logout
+                  </div>
+                </Link>
+              ) : (
+                <Link to={'/login'}>
+                  <div 
+                    className='menu-item'
+                  >
+                    Login
+                  </div>
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
