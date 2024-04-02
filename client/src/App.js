@@ -8,6 +8,7 @@ import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
 import { apiAuth, auth } from './services/auth';
 import Homepage from './components/Homepage';
+import { Home } from '@mui/icons-material';
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -28,7 +29,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<>Landing Page</>}/>
+                <Route path='/' element={<Homepage />}/>
                 <Route path='login' element={<Login />}/>
                 <Route path='signup' element={<SignUp />}/>
                 <Route path='admin-dashboard' element={<SquareCard />}/>
