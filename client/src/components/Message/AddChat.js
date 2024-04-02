@@ -1,5 +1,6 @@
-import avatar from './Images/Avatar.png'
 import './Style/AddChat.css'
+
+import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 function AddChat(props){
     let userList = props.userList
@@ -17,7 +18,7 @@ function AddChat(props){
             if (!convoListUsers.includes(listUser['_id'])){
                 return(
                     <div key={listUser['_id']} id={listUser['_id']} className='singleAddChat' onClick={(e) => newChat(e)}>
-                        <img src={avatar} />
+                        <UserCircleIcon className='addChatUserImg' />
                         <p id={"addUserUserName"} className='addChatUserName'>{listUser['name']}</p>
                     </div>
                     )

@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 
 import './Style/MessagePage.css'
-import avatar from './Images/Avatar.png'
-import sendButton from './Images/sendButton.png'
 
 import Message from './Message'
 import MessageBar from './MessageBar'
@@ -10,7 +8,11 @@ import AddChat from './AddChat'
 
 import { socket } from './socket'
 
-import Modal from 'react-modal';
+import Modal from 'react-modal'
+
+import { UserCircleIcon } from '@heroicons/react/24/solid';
+
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePass}){
 
@@ -149,7 +151,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
         <div className='messagePage'>
 
           <div className='chatHeader'>
-            <img src={avatar} />&emsp;
+            <UserCircleIcon className='chatHeaderImg' />&emsp;
             <h1>{messageName}</h1>
           </div>
 
@@ -165,7 +167,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
 
             <textarea value={msg} onChange={(e) => setMsg(e.target.value)} placeholder={"Message " + messageName} id={"inputMessage"} onKeyDown={(e) => enterPress(e)}/>
 
-            <button type="submit" disabled={!msg} id={'sendButton'}><img src={sendButton} /></button>
+                    <button type="submit" disabled={!msg} id={'sendButton'}><PaperAirplaneIcon className='submitButtonIcon' /></button>
 
           </form>
         </div>

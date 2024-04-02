@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.chatHeader img{
+.chatHeaderImg {
     padding-left: 30px;
     height: 7vh;
 }
@@ -66,8 +66,9 @@
     border: 1px solid black;
 }
 
-#sendButton img{
+.submitButtonIcon {
     height: 60%;
+    stroke: black;
 }
 
 #addChatHeader{
@@ -76,4 +77,8 @@
     font-weight: 800;
     line-height: 30.26px;
     text-align: left;
+}
+
+.addUserList{
+    overflow-y: hidden;
 }

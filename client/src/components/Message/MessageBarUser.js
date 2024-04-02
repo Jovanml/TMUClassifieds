@@ -1,5 +1,6 @@
-import avatar from './Images/Avatar.png'
 import './Style/MessageBarUser.css'
+
+import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 function MessageBarUser(props){
 
@@ -12,7 +13,7 @@ function MessageBarUser(props){
 
     return(
         <div className={props.selected ? 'messageBarUser selected' : 'messageBarUser'} id={props.user} onClick={(e) => changeChat(e)}>
-            <img src={avatar}/>
+            <UserCircleIcon className='messageBarUserImg' />
             <p id={"messageBarUserName"}>{props.name}</p>
         </div>
     )

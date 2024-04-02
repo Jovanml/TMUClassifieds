@@ -1,6 +1,6 @@
 import './Style/MessageBar.css'
 import MessageBarUser from './MessageBarUser'
-import addChat from './Images/addChat.png'
+import addChat from './Images/addChat.svg'
 
 function MessageBar(props){
 
