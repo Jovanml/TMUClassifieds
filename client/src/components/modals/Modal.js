@@ -11,16 +11,17 @@ import { XCircleIcon } from "@heroicons/react/24/outline";
 import './Modal.css';
 
 const Modal = ({
-  isOpen, // boolean
+  isOpen, // boolean (optional) 
   onClose, // () => void
   onSubmit, // () => void
-  title, // string
-  body, // ReactElement
-  footer, // ReactElement
+  title, // string (optional)
+  body, // ReactElement (optional)
+  footer, // ReactElement (optional)
   actionLabel, //string
-  disabled, // boolean
-  secondaryAction, //() => void
-  secondaryLabel, // string
+  actionLink, // string
+  disabled, // boolean (optional)
+  secondaryAction, //() => void (optional)
+  secondaryActionLabel, // string (optional)
 }) => {
 
   const [showModal, setShowModal] = useState(isOpen);
@@ -86,8 +87,10 @@ const Modal = ({
                     label={actionLabel}
                     onClick={handleSubmit}
                     disabled={disabled}
+                    btnLink={actionLink}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
