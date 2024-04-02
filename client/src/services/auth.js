@@ -6,6 +6,7 @@ import {
     signOut,
 } from '@firebase/auth';
 import app from '../utils/firebase';
+import { axiosInstance } from '../utils/axios';
 
 const provider = new GoogleAuthProvider();
 
@@ -28,4 +29,14 @@ export const logOut = () => {
         .catch(error => {
             console.log(`ERROR: ${error}`);
         })
+}
+
+export const apiAuth = async (token) => {
+    try{
+        const response = await axiosInstance.post("/login", {userToken: token});
+        return response.data;
+    } catch(error) {
+        console.log(`ERROR: ${error}`);
+        return null;
+    }    
 }

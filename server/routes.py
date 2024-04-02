@@ -10,6 +10,8 @@ from flask_socketio import SocketIO,emit
 import datetime
 import os
 from dotenv import load_dotenv
+from helpers import verify_id_token
+import json
 
 #how to start the app
 #flask --app routes --debug run
@@ -461,6 +463,37 @@ def postMessage():
     except Exception as e:
         print(e)
         return e, 500
+
+@app.post("/login")
+def login():
+    data = request.json
+    if "userToken" not in data:
+        return "Invalid Data", 400
+
+    user_token = data["userToken"]
+    decoded_token = verify_id_token(user_token)
+
+    if decoded_token is None:
+            return "Invalid Token", 400
+    uid = decoded_token['uid']
+
+    try:
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        db = client["TestCPS630"]
+        collection = db["Users"]
+        user = collection.find_one({'googleID': uid})
+
+        if user is None:
+            user = {"_id": ObjectId(), "name": decoded_token["name"], "email": decoded_token["email"], "googleID": uid, "admin": "false", "banned": "false", "blocked_users": [], "bought": [], "posts": [], "conversations": {}}
+            result = collection.insert_one(user)
+            if result.acknowledged == False:
+                return "Operation Failed", 500
+        
+        return json.dumps(user, default=str), 200
+    except Exception as e:
+        print(e)
+        return e, 500
+ 
 
 ##################################################
 #sockets

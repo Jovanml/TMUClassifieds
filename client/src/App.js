@@ -6,7 +6,7 @@ import SignUp from './components/Signup/signup';
 import SquareCard from './components/AdminDashboard/admin_dashboard';
 import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
-import { auth } from './services/auth';
+import { apiAuth, auth } from './services/auth';
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -14,7 +14,9 @@ function App() {
     useEffect(() => {
         onAuthStateChanged(auth, async user => {
             if (user) {
-                return dispatch({ type: 'LOG_IN' });
+                const userToken = await user.getIdToken();
+                const userData = await apiAuth(userToken);
+                return dispatch({ type: 'LOG_IN', payload: userData });
             } else {
                 return dispatch({ type: 'LOG_OUT' });
             }

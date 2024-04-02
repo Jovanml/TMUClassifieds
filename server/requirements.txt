@@ -3,3 +3,4 @@ Flask_Cors==4.0.0
 Flask_SocketIO==5.3.6
 pymongo==4.6.2
 python-dotenv==1.0.1
+firebase-admin==6.5.0
