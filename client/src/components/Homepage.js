@@ -79,55 +79,6 @@ const Homepage = () => {
             }}
           />
         ))}
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
-        <ListingCard 
-          imgSrc={tempPhoto}
-          price={'$10'}
-          title={'HB Classic Black Wooden Pencil with Eraser - Pack of 12'}
-          location={'Toronto, ON'}
-          onClick={listingModal.onOpen}
-        />
       </div>
     </>
   );
