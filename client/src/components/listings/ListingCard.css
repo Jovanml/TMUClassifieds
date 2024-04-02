@@ -1,0 +1,26 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-container {
+  display: flex;
+  background-color: rgb(107 114 128 / 1);
+  border-radius: 1rem;
+  object-fit: fill;
+  aspect-ratio: 1/1;
+
+  img {
+    border-radius: 1rem;
+    aspect-ratio: 1/1;
+  }
+}
+
+.listing-price {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.listing-location {
+  color: #717171
+}
