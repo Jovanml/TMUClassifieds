@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './components/Login/login';
+import SignUp from './components/Signup/signup';
+import SquareCard from './components/AdminDashboard/admin_dashboard';
+import { onAuthStateChanged } from '@firebase/auth';
+import { GlobalContext } from './contexts/GlobalContext';
+import { auth } from './services/auth';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const { dispatch } = useContext(GlobalContext);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, async user => {
+            if (user) {
+                return dispatch({ type: 'LOG_IN' });
+            } else {
+                return dispatch({ type: 'LOG_OUT' });
+            }
+        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<>Landing Page</>}/>
+                <Route path='login' element={<Login />}/>
+                <Route path='signup' element={<SignUp />}/>
+                <Route path='admin-dashboard' element={<SquareCard />}/>
+            </Routes>
+        </BrowserRouter>
   );
 }
 

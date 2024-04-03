@@ -1,0 +1,153 @@
+body{
+  background-color: #f1f4ff;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #0E6BC4;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.title {
+  margin-left: 1rem;
+  font-size: 2rem;
+  color: #fcba2c;
+}
+
+.App-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.sign-in {
+  color: #333333;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  width: 300px;
+  margin: 2rem; 
+}
+
+.sign-in h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem; 
+}
+
+.social-sign-in {
+  margin-bottom: 1.5rem; 
+}
+
+
+.google-sign-in {
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  font-weight: bold;
+  background-color: #FFFFFF;
+  color: #333333;
+  padding: 1rem 2rem;
+  border: .5px solid black; 
+  border-radius: 10px; 
+  cursor: pointer;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.google-text {
+  vertical-align: middle;
+}
+
+
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem; 
+}
+
+.or-line {
+  width: 49%;
+  height: 1px;
+  background-color: #d9d9d9;
+}
+
+.or-separator span {
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem; 
+}
+
+.sign-in-form label {
+  color: #707070;
+  margin-bottom: 0.5rem; 
+  font-weight: bold;
+  display: block;
+  text-align: left;
+}
+
+.sign-in-form input {
+  padding: 1rem;
+  margin-bottom: 1rem; 
+}
+
+.forgot-password {
+  margin-top: -0.9rem; 
+  font-size: 0.8rem; 
+  text-align: left; 
+  margin-bottom: 1.5rem;
+}
+
+
+.sign-up-message {
+  margin-top: 1rem; 
+  color:#333333;
+  font-size: 0.8rem;
+}
+.sign-in-button {
+  background-color: #c3c3c3; 
+  color: #ffffff; 
+  padding: 1rem 3rem; 
+  border: none; 
+  border-radius: 20px; 
+  font-size: 1rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.sign-in-button:hover {
+  background-color: #555555; 
+}
+.underline {
+  text-decoration: underline;
+}
+
+
