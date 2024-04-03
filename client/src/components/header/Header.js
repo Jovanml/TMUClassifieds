@@ -1,7 +1,7 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -13,15 +13,19 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 // Styles
 import './Header.css';
 
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../contexts/GlobalContext';
+import { logOut } from '../../services/auth';
 
 const Header = ({currentUser}) => {
-
+  const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
 
   const isMobile = useMediaQuery(mobileBreakpoint);
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
+  const navigate = useNavigate();
   const toggleMenuOpen = useCallback(() => {
     setMenuIsOpen(value => !value);
   }, [])
@@ -100,7 +104,7 @@ const Header = ({currentUser}) => {
         <button className='btn-circle'>
           <ChatBubbleOvalLeftIcon className='w-9 h-9'/>
         </button>
-        <button className='btn-circle'>
+        <button className='btn-circle' onClick={() => navigate('/new-listing')}>
           <PlusCircleIcon className='w-9 h-9' />
         </button>
         <div className='menu'>
@@ -113,14 +117,10 @@ const Header = ({currentUser}) => {
           </button>
           {menuIsOpen && (
             <div className='menu-opened'>
-              {currentUser ? (
-                <Link to={'/logout'}>
-                  <div 
-                    className='menu-item'
-                  >
+              {state.isLoggedIn ? (
+                <button className='menu-item' onClick={logOut}>
                     Logout
-                  </div>
-                </Link>
+                </button>
               ) : (
                 <Link to={'/login'}>
                   <div 

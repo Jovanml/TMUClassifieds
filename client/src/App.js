@@ -2,7 +2,6 @@ import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login/login';
-import SignUp from './components/Signup/signup';
 import SquareCard from './components/AdminDashboard/admin_dashboard';
 import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
@@ -33,7 +32,6 @@ function App() {
             <Routes>
                 <Route path='/' element={<Protected><Homepage /></Protected>}/>
                 <Route path='login' element={<Login />}/>
-                <Route path='signup' element={<SignUp />}/>
                 <Route path='admin-dashboard' element={<Protected><SquareCard /></Protected>}/>
                 <Route path='new-listing' element={<Protected><NewListing /></Protected>}/>
             </Routes>
