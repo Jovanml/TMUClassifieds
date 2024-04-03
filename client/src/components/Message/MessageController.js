@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import './Style/MessageComponent.css'
 
@@ -8,9 +8,12 @@ import MessageBar from './MessageBar'
 import { socket } from './socket'
 import { useLocation } from 'react-router-dom'
 
-function MessageController({ user }) {
+import { GlobalContext } from '../../contexts/GlobalContext';
 
+function MessageController() {
 
+    const { state } = useContext(GlobalContext);
+    const user = state.user;
 
     socket.disconnect()
     socket.connect()
