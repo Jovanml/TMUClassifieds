@@ -23,15 +23,15 @@ const NewListing = () => {
     }
     
     return (
-        <Box sx={{ border: '1px solid red', height: '100vh'}}>
+        <Box height='100vh'>
             <Container>
-                <Box sx={{ minHeight: '600px', m: '30px 0px'}}>
+                <Box minHeight='600px' m='30px 0px'>
                     {formComponents[currentStep]}
                 </Box>
                 <ProgressBar steps={5} current={currentStep}/>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: '20px', height: '45px' }}>
-                    <Button variant='contained' sx={{ backgroundColor: 'black' }} disabled={currentStep === 0} onClick={prevStep}>Back</Button>
-                    <Button variant='contained' sx={{ backgroundColor: 'black' }} disabled={currentStep === 4} onClick={nextStep}>Next</Button>
+                <Box display='flex' justifyContent='space-between' mt='20px' height='45px'>
+                    <Button variant='contained' backgroundColor='black' disabled={currentStep === 0} onClick={prevStep}>Back</Button>
+                    <Button variant='contained' backgroundColor='black' disabled={currentStep === 4} onClick={nextStep}>Next</Button>
                 </Box>
             </Container>
         </Box>
