@@ -1,12 +1,18 @@
+// Packages
+import { useSearchParams } from 'react-router-dom';
+
 // Styles
 import './Category.css';
 
 const Category = ({label, icon, selected}) => {
 
-  // TODO - add logic to add category as a URL param when selected
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
-    <div className={`category-container ${selected ? 'selected-category' : 'selected-category-not'}`}>
+    <div 
+      className={`category-container ${selected ? 'selected-category' : 'selected-category-not'}`}
+      onClick={() => setSearchParams({...searchParams, 'category': label})}
+    >
       {icon}
       <div className='category-label'>
         {label}

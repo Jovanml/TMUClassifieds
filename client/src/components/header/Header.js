@@ -66,7 +66,7 @@ const Header = ({currentUser}) => {
         </div>
         <button 
           className='search-btn'
-          onClick={() => setSearchParams({'search': searchInput})}
+          onClick={() => setSearchParams({...searchParams, 'search': searchInput})}
         >
           Search
         </button>
@@ -103,7 +103,7 @@ const Header = ({currentUser}) => {
           </div>
           <button 
             className='search-btn'
-            onClick={() => setSearchParams({'search': searchInput})}
+            onClick={() => setSearchParams({...searchParams, 'search': searchInput})}
           >
             Search
           </button>
