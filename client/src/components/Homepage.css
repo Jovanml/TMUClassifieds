@@ -8,17 +8,26 @@
 
 .params-container {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) 0.5fr;
 }
 
 .filter-btn-container {
   display: flex;
-  padding: 1.5rem 3.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 @media screen and (min-width: 640px) {
   .listing-cards-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .params-container {
+    grid-template-columns: 80% 20%;
+  }
+
+  .filter-btn-container {
+    padding: 2rem 2rem 2rem 0;
   }
 }
 
@@ -31,6 +40,10 @@
 @media screen and (min-width: 1024px) {
   .listing-cards-container {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .filter-btn-container {
+    padding: 2rem 3rem;
   }
 }
 
