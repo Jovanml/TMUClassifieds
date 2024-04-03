@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, TextField } from '@mui/material';
 
-const AddTitle = () => {
-    const [title, setTitle] = useState('');
+const AddTitle = ({ title, setTitle, setIsValueInput }) => {
     const [numChars, setNumChars] = useState(0);
     const MAXCHARS = 36;
 
     useEffect(() => {
+        if (title.length === 0){
+            setIsValueInput(false);
+        } else {
+            setIsValueInput(true);
+        }
+
         setNumChars(title.length);
-    }, [title])
+    }, [title, setIsValueInput])
     
     const onChange = (e) => {
         if (e.target.value.length > MAXCHARS) return;

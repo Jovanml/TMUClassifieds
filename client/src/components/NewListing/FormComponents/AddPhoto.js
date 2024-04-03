@@ -2,10 +2,9 @@ import React, { useState, useRef } from 'react';
 import { Box, Typography, Input } from '@mui/material';
 import CollectionsIcon from '@mui/icons-material/Collections';
 
-const AddPhoto = () => {
+const AddPhoto = ({ selectedFile, setSelectedFile }) => {
     const [dragging, setDragging] = useState(false);
     const fileInputRef = useRef(null);
-    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleDragEnter = (e) => {
         e.preventDefault();
@@ -49,7 +48,8 @@ const AddPhoto = () => {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                sx={{ border: dragging ? '2px dashed #aaa' : '2px dashed #ccc', pt: '100px', width: '500px', height: '300px', textAlign: 'center', cursor: 'default' }}
+                sx={{ border: dragging ? '2px dashed #aaa' : '2px dashed #ccc', pt: '100px', width: '500px', 
+                height: '300px', textAlign: 'center', cursor: 'default' }}
             >
                 <CollectionsIcon sx={{fontSize: '48px'}}/>
                 <Typography variant='h5'>Drag your photos here</Typography>
@@ -63,7 +63,8 @@ const AddPhoto = () => {
                     accept: 'image/*'
                     }}
                 />
-                <Typography variant='subtitle1' fontSize={'0.9rem'} sx={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={handleTextClick}>Upload from your device</Typography>
+                <Typography variant='subtitle1' fontSize={'0.9rem'} sx={{ textDecoration: 'underline', cursor: 'pointer' }} 
+                onClick={handleTextClick}>Upload from your device</Typography>
                 {selectedFile  && <Typography variant='caption'>{selectedFile.name}</Typography>}
             </Box>
         </Box>
