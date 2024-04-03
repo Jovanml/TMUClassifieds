@@ -9,6 +9,7 @@ import { GlobalContext } from './contexts/GlobalContext';
 import { apiAuth, auth } from './services/auth';
 import Homepage from './components/Homepage';
 import { Home } from '@mui/icons-material';
+import NewListing from './components/NewListing/NewListing';
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -33,6 +34,7 @@ function App() {
                 <Route path='login' element={<Login />}/>
                 <Route path='signup' element={<SignUp />}/>
                 <Route path='admin-dashboard' element={<SquareCard />}/>
+                <Route path='new-listing' element={<NewListing />}/>
             </Routes>
         </BrowserRouter>
   );
