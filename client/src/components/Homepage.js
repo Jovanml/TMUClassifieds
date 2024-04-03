@@ -2,20 +2,21 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+// Hooks
+import useListingModal from "../hooks/useListingModal";
+
 // Components
 import Header from "./header/Header";
 import Categories from "./categories/Categories";
 import ListingCard from "./listings/ListingCard";
 import ListingModal from "./modals/ListingModal";
+import Button from "./buttons/Button";
 
-// Hooks
-import useListingModal from "../hooks/useListingModal";
+// Icons
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 // Styles
 import './Homepage.css';
-
-import tempPhoto from '../assets/tempPhoto.jpg'
-import Modal from "./modals/Modal";
 
 
 
@@ -25,7 +26,6 @@ const Homepage = () => {
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
-  // TODO - axios call
   useEffect(() => {
     const fetchData = async() => {
       try {
@@ -59,7 +59,15 @@ const Homepage = () => {
     <>
       <ListingModal postInfo={postInfo}/>
       <Header />
-      <Categories />
+      <div className='params-container'>
+        <Categories />
+        <div className='filter-btn-container'>
+          <Button 
+            label={'Filters'}
+            icon={<AdjustmentsHorizontalIcon className='w-6 h-6 ' />}
+          />
+        </div>
+      </div>
       <div className='listing-cards-container'>
         {posts.map((post) => (
           <ListingCard 
