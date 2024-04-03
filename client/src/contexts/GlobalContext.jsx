@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 
 const initialState = {
     isLoggedIn: null,
-    uid: null
+    user: null
 }
 
 const Reducer = (state, action) => {
@@ -11,13 +11,13 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                uid: action.uid ? action.uid : null
+                user: action.payload
             }
         case 'LOG_OUT':
             return {
                 ...state,
                 isLoggedIn: false,
-                uid: null
+                user: null
             }
         default:
             return state
