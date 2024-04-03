@@ -10,18 +10,22 @@
     align-items: center;
 }
 
-#addChatText{
-    font-family: Inter;
-    font-size: 50px;
-    font-weight: 800;
-    line-height: 60.51px;
-    text-align: left;
-
+#addChatText {
+    display: none;
 }
 
-#addChatButton{
-    width: 60px;
-    height: 60px;
+@media screen and (min-width: 1000px) {
+    #addChatText {
+        font-family: Inter;
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 60.51px;
+        text-align: left;
+        display: block;
+    }
+}
+
+#addChatButton {
     gap: 0px;
     border-radius: 50%;
     border: 1px 0px 0px 0px;
@@ -31,10 +35,16 @@
     box-shadow: 0px 2px 4px 0px #00000040;
 }
 
-#addChatButton:hover{
-    cursor: pointer;
+    #addChatButton:hover {
+        cursor: pointer;
+    }
+
+#messageBarUserList {
+    overflow-y: auto;
 }
 
-#messageBarUserList{
-    overflow-y: auto;
+#addChatImg {
+    height: 5vh;
+    max-height: 60px;
+    padding: 2px;
 }

@@ -67,7 +67,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
             })
           }
         })
-        .catch(e)(err => {
+        .catch(err => {
             console.error(err)
         })
       }
@@ -120,7 +120,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
           socket.emit('message', {"convoID": messageDBID, 'text': msg, 'userID': user['_id']})
           dummy.current.scrollIntoView({ behavior: 'smooth' })
         })
-        .catch(e)(err => {
+        .catch(err => {
             console.error(err)
         })
       }
@@ -140,7 +140,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
       if (key === 13) {
         e.preventDefault()
         if (msg !== ''){
-          sendMessage()
+          sendMessage(e)
         }
       }
     }

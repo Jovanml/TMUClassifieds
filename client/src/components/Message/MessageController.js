@@ -38,7 +38,7 @@ function MessageController({ user }) {
                     })
                 }
             })
-            .catch(e)(err => {
+            .catch(err => {
                 console.error(err)
             })
         }
@@ -63,7 +63,7 @@ function MessageController({ user }) {
                 'messageUserName': mN
             })
         })
-        .catch(e)(err => {
+        .catch(err => {
             console.error(err)
         })
     }

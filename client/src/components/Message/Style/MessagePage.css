@@ -69,6 +69,7 @@
 .submitButtonIcon {
     height: 60%;
     stroke: black;
+    padding-right: 2px;
 }
 
 #addChatHeader{

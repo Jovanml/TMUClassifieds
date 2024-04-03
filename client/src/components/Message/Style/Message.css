@@ -14,15 +14,16 @@
 }
 
 .messageText {
-    max-width: 40vw;
+    max-width: 28vw;
     margin-bottom: 0;
     line-height: 24px;
     padding: 10px 20px;
     border-radius: 25px;
     position: relative;
     color: white;
-    text-align: center;
+    text-align: left;
     display: inline-flex;
+    word-break: break-all;
 }
 
 .messageTime{
