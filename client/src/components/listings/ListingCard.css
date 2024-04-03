@@ -1,6 +1,11 @@
 .card-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.card-container:hover {
+  cursor: pointer;
 }
 
 .img-container {
