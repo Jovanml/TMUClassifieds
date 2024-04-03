@@ -1,7 +1,7 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -17,10 +17,13 @@ import './Header.css';
 const Header = ({currentUser}) => {
 
   const mobileBreakpoint = '(max-width: 640px)'
-
   const isMobile = useMediaQuery(mobileBreakpoint);
+  
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
 
   const toggleMenuOpen = useCallback(() => {
     setMenuIsOpen(value => !value);
@@ -52,9 +55,19 @@ const Header = ({currentUser}) => {
       <div className='search-bar search-bar-mobile'>
         <img src={searchIcon} alt='search' />
         <div>
-          <input className='search-text-input' name='search-input' placeholder='Search TMUFinds' />
+          <input 
+            className='search-text-input'
+            type='text'
+            placeholder='Search TMUFinds'
+            name='search-input'
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
         </div>
-        <button className='search-btn'>
+        <button 
+          className='search-btn'
+          onClick={() => setSearchParams({'search': searchInput})}
+        >
           Search
         </button>
       </div>
@@ -79,9 +92,19 @@ const Header = ({currentUser}) => {
         <div className='search-bar'>
           <img src={searchIcon} alt='search' />
           <div>
-            <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
+            <input 
+              className='search-text-input'
+              type='text'
+              placeholder='Search TMUFinds'
+              name='search-input'
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
           </div>
-          <button className='search-btn'>
+          <button 
+            className='search-btn'
+            onClick={() => setSearchParams({'search': searchInput})}
+          >
             Search
           </button>
         </div>

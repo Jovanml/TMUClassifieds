@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // Hooks
 import useListingModal from "../hooks/useListingModal";
+import useFilterModal from "../hooks/useFilterModal";
 
 // Components
 import Header from "./header/Header";
@@ -11,6 +12,7 @@ import Categories from "./categories/Categories";
 import ListingCard from "./listings/ListingCard";
 import ListingModal from "./modals/ListingModal";
 import Button from "./buttons/Button";
+import FilterModal from "./modals/FilterModal";
 
 // Icons
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
@@ -23,6 +25,8 @@ import './Homepage.css';
 
 const Homepage = () => {
   const listingModal = useListingModal();
+  const filterModal = useFilterModal();
+
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
@@ -58,6 +62,7 @@ const Homepage = () => {
   return (
     <>
       <ListingModal postInfo={postInfo}/>
+      <FilterModal />
       <Header />
       <div className='params-container'>
         <Categories />
@@ -65,6 +70,7 @@ const Homepage = () => {
           <Button 
             label={'Filters'}
             icon={<AdjustmentsHorizontalIcon className='w-6 h-6 ' />}
+            onClick={filterModal.onOpen}
           />
         </div>
       </div>
