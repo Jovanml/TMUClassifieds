@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 
 // Components
 import Button from "../buttons/Button";
+import { Link } from "react-router-dom";
 
 // Icons
 import { XCircleIcon } from "@heroicons/react/24/outline";
@@ -94,13 +95,26 @@ const Modal = ({
                       outline
                     />  
                   )}
-                  <Button 
-                    label={actionLabel}
-                    onClick={handleSubmit}
-                    disabled={disabled}
-                    btnLink={actionLink}
-                    icon={btnIcon}
-                  />
+                  {actionLink ? (
+                    <Link
+                      className='btn-with-link'
+                      to={actionLink}
+                    >
+                      <Button 
+                        label={actionLabel}
+                        onClick={handleSubmit}
+                        disabled={disabled}
+                        icon={btnIcon}
+                      />
+                    </Link>
+                  ) : (
+                    <Button 
+                      label={actionLabel}
+                      onClick={handleSubmit}
+                      disabled={disabled}
+                      icon={btnIcon}
+                    />
+                  )}
                 </div>
               </div>
             </div>
