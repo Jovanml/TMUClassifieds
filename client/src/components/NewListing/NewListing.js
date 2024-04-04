@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Container, Button } from '@mui/material'
 import ProgressBar from './ProgressBar';
 import { AddCategory, AddPhoto, AddTitle, AddDescription, AddPrice, AddLoc} from './FormComponents';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { addPost } from '../../services/posts';
 import Header from '../header/Header'
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 const NewListing = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -18,7 +19,7 @@ const NewListing = () => {
     const [loc, setLoc] = useState('')
 
     const navigate = useNavigate();
-
+    const { state } = useContext(GlobalContext);
     const formComponents = {
         0: <AddCategory category={category} setCategory={setCategory} setIsValueInput={setIsValueInput}/>,
         1: <AddPhoto selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>,
@@ -52,11 +53,13 @@ const NewListing = () => {
         }
 
         const formData = {
-            category: category,
-            photoUrl: fileUrl,
+            postType: category,
+            picture: fileUrl,
             title: title,
-            description: description,
-            price: Number(price).toFixed(2)
+            desc: description,
+            price: Number(price).toFixed(2),
+            location: loc,
+            owner: state.user._id
         }
 
         addPost(formData)

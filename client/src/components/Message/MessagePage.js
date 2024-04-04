@@ -15,7 +15,6 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
 function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, statePass, setUsersConvo }){
-    console.log(usersConvo)
     const messageDBID = usersConvo[messageUserID]['id']
     const messageName = usersConvo[messageUserID]['name']
     const [messages, setMessages] = useState([])

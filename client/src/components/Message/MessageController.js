@@ -70,7 +70,7 @@ function MessageController() {
                 console.error(err)
             })
         }
-        console.log('thisrun?')
+        
         fetchConvos()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messageUserID])

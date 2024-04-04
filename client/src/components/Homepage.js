@@ -37,15 +37,15 @@ const Homepage = () => {
   useEffect(() => {
     function handleOnScroll() {
       const header = document.getElementById('header-bar');
-      const sticky = header.offsetTop;
+      const sticky = header?.offsetTop;
 
       if (window.scrollY > sticky) {
-        header.classList.add('header-sticky');
+        header?.classList.add('header-sticky');
       } else {
-        header.classList.remove('header-sticky');
+        header?.classList.remove('header-sticky');
       }
     }
-
+    
     window.addEventListener('scroll', handleOnScroll);
   }, []);
 
@@ -102,6 +102,7 @@ const Homepage = () => {
       <div className='listing-cards-container'>
         {posts.map((post) => (
           <ListingCard 
+            key={post._id}
             imgSrc={post.picture}
             price={`$${post.price}`}
             title={post.title}

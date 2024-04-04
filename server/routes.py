@@ -306,7 +306,6 @@ def getData():
 @app.post("/create/posts")
 def createData():
     formData = request.form
-    file = request.files['file']
     postID = ObjectId()
     record = {"_id": postID, "type": formData["postType"], "title": formData["title"], "description": formData['desc'], "banned": "false", "bought": "false", "buyer": "", "price": float(formData["price"]), "picture": formData['picture'], "owner": ObjectId(formData["owner"]), "location": formData["location"]}
     try:
