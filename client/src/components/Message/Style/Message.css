@@ -14,7 +14,7 @@
 }
 
 .messageText {
-    max-width: 28vw;
+    max-width: calc((100vw - 300px) * 0.4);
     margin-bottom: 0;
     line-height: 24px;
     padding: 10px 20px;

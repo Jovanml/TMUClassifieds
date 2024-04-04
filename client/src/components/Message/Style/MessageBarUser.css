@@ -27,5 +27,6 @@
 }
 
 .messageBarUserImg {
-    height: 9vh;
+    /*height: 9vh;*/
+    height: 5.125rem;
 }

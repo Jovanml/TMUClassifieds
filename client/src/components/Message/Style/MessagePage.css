@@ -1,11 +1,12 @@
-.messagePage{
-    width: 82vw;
+.messagePage {
+    /*width: 82vw;*/
+    width: calc(100vw - 300px);
 }
 
 .chatHeader {
     display: flex;
-    border-top: 3px solid #F0F2F5;
-    border-bottom: 3px solid #F0F2F5;
+    border-top: 3px solid #DADADA;
+    border-bottom: 3px solid #DADADA;
     height: calc((100vh - 144px) * .125);
     box-sizing: border-box;
     align-items: center;
@@ -13,7 +14,8 @@
 
 .chatHeaderImg {
     padding-left: 30px;
-    height: 7vh;
+    /*height: 7vh;*/
+    height: 4.375rem;
 }
 
 .chatHeader h1{
@@ -32,7 +34,7 @@
 }
 
 .messageSubmit {
-    border-top: 3px solid #F0F2F5;
+    border-top: 3px solid #DADADA;
     display: flex;
     height: calc((100vh - 144px) * .08);
     box-sizing: border-box;
@@ -44,7 +46,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    font-size: 2vh;
+    font-size: 1.125rem;
     resize: none;
     padding-left: 2px;
     outline: none;
@@ -68,7 +70,7 @@
 }
 
 .submitButtonIcon {
-    height: 60%;
+    height: 2.125rem;
     stroke: black;
     padding-right: 2px;
 }
