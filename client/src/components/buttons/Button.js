@@ -15,22 +15,22 @@ const Button = ({
   return (
     <>
       {btnLink ? (
-        <button
-          className={`btn-container ${className ? className : ''}`}
-          disabled={disabled}
-        >
-          <Link 
-            to={btnLink} 
-            className='btn-with-link'
+        <Link 
+          to={btnLink} 
+          className={`btn-with-link ${className ? className : ''}`}
           >
-              {icon && (
-                <div>
-                  {icon}
-                </div>
-              )}
-              {label}
-          </Link>
-        </button>
+          <button
+            className='btn-container'
+            disabled={disabled}
+          >
+            {icon && (
+              <div className='btn-icon'>
+                {icon}
+              </div>
+            )}
+            {label}
+          </button>
+        </Link>
       ) : (
         <button 
           className={`btn-container ${className ? className : ''}`}
