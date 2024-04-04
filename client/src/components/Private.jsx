@@ -6,6 +6,7 @@ const Protected = ({ children }) => {
     const { state } = useContext(GlobalContext);
     
     if (state.isLoggedIn == null) return <></>;
+    if (state.isLoggedIn && state.user.banned === "true") return <Navigate to="/banned"/>
     return state.isLoggedIn ? (
         <>
             {children}
