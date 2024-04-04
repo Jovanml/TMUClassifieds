@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import './Button.css';
 
 const Button = ({
+  className,
   label, // string
   onClick, // e => void
   btnLink, // LinkElement to
@@ -15,7 +16,7 @@ const Button = ({
     <>
       {btnLink ? (
         <button
-          className='btn-container'
+          className={`btn-container ${className ? className : ''}`}
           disabled={disabled}
         >
           <Link 
@@ -32,7 +33,7 @@ const Button = ({
         </button>
       ) : (
         <button 
-          className='btn-container'
+          className={`btn-container ${className ? className : ''}`}
           onClick={onClick}
           disabled={disabled}
         >
