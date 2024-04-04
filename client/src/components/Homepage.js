@@ -43,7 +43,7 @@ const Homepage = () => {
     fetchData();
   }, []);
 
-  const handleOnClick = ({title, price, location, description, imgSrc, owner}) => {
+  const handleOnClick = ({title, price, location, description, imgSrc, owner, id}) => {
     listingModal.onOpen();
     setPostInfo({
       'title': title,
@@ -52,6 +52,7 @@ const Homepage = () => {
       'description': description,
       'imgSrc': imgSrc,
       'owner': owner,
+      'id': id
     })
   };
 
@@ -75,6 +76,7 @@ const Homepage = () => {
                 description: post.description, 
                 imgSrc: `data:${post.picture.type};base64,${post.picture.data}`, 
                 owner: post.owner,
+                id: post.ownerID
               })
             }}
           />
