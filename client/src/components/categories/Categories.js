@@ -11,15 +11,18 @@ import './Categories.css';
 export const categories = [
   {
     label: 'Items Wanted',
-    icon: <DocumentMagnifyingGlassIcon className='w-6 h-6'/>
+    icon: <DocumentMagnifyingGlassIcon className='w-6 h-6'/>,
+    param: 'items-wanted'
   },
   {
     label: 'Items for Sale',
-    icon: <ShoppingCartIcon className='w-6 h-6'/>
+    icon: <ShoppingCartIcon className='w-6 h-6'/>,
+    param: 'items-for-sale'
   },
   {
     label: 'Academic Services',
-    icon: <AcademicCapIcon className='w-6 h-6' />
+    icon: <AcademicCapIcon className='w-6 h-6' />,
+    param: 'academic-services'
   }
 ]
 
@@ -31,6 +34,7 @@ const Categories = () => {
           key={index}
           label={category.label}
           icon={category.icon}
+          param={category.param}
         />
       ))}
     </div>

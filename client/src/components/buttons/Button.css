@@ -22,12 +22,6 @@
 }
 
 .btn-container:hover {
-  opacity: 0.5;
-}
-
-.btn-with-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
+  opacity: 0.7;
+  cursor: pointer;
 }

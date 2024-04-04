@@ -1,0 +1,81 @@
+.login-container {
+  display: grid;
+  grid-template-rows: 80% 20%;
+  height: 100vh;
+  position: relative;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #0E6BC4;
+}
+
+.login-logo {
+  width: 50%;
+  height: 50%;
+  aspect-ratio: 1/1;
+}
+
+.login-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid rgba(209, 213, 219, 1);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px #d1d5db, 0 2px 4px -2px #d1d5db;
+  padding: 3rem;
+  margin: 2rem; 
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem; 
+}
+
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  gap: 1rem;
+  font-weight: 600;
+  color: #333333;
+  padding: 1rem 2rem;
+  border: 0.5px solid black; 
+  border-radius: 10px; 
+  cursor: pointer;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .login-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .login-card-container {
+    position: absolute;
+    top: 60%;
+  }
+}

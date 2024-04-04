@@ -1,39 +1,65 @@
 // Packages
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
+
+// Hooks
+import useListingModal from "../hooks/useListingModal";
+import useFilterModal from "../hooks/useFilterModal";
 
 // Components
 import Header from "./header/Header";
 import Categories from "./categories/Categories";
 import ListingCard from "./listings/ListingCard";
 import ListingModal from "./modals/ListingModal";
+import Button from "./buttons/Button";
+import FilterModal from "./modals/FilterModal";
 
-// Hooks
-import useListingModal from "../hooks/useListingModal";
+// Icons
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 // Styles
 import './Homepage.css';
-
-import tempPhoto from '../assets/tempPhoto.jpg'
-import Modal from "./modals/Modal";
 
 
 
 
 const Homepage = () => {
   const listingModal = useListingModal();
+  const filterModal = useFilterModal();
+
+  const location = useLocation();
+
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
-  // TODO - axios call
+
+  useEffect(() => {
+    function handleOnScroll() {
+      const header = document.getElementById('header-bar');
+      const sticky = header.offsetTop;
+
+      if (window.scrollY > sticky) {
+        header.classList.add('header-sticky');
+      } else {
+        header.classList.remove('header-sticky');
+      }
+    }
+
+    window.addEventListener('scroll', handleOnScroll);
+  }, []);
+
   useEffect(() => {
     const fetchData = async() => {
       try {
-        await axios.get('http://127.0.0.1:5000/get/posts?limit=10&offset=0')
-          .then(response => response.data)
-          .then(data =>{
-              setPosts(data);
-              console.log(data);
+        await axios.get(`http://127.0.0.1:5000/get/posts${location.search}`)
+          .then(response => {
+            if (response.status === 200) {
+              setPosts(response.data);
+            }
+            if (response.status === 204) {
+              setPosts([]);
+            }
           })
       } catch (err) {
         console.error(err)
@@ -41,7 +67,7 @@ const Homepage = () => {
     }
 
     fetchData();
-  }, []);
+  }, [location.search]);
 
   const handleOnClick = ({title, price, location, description, imgSrc, owner, id}) => {
     listingModal.onOpen();
@@ -59,12 +85,24 @@ const Homepage = () => {
   return (
     <>
       <ListingModal postInfo={postInfo}/>
-      <Header showSearch={true} />
-      <Categories />
+      <FilterModal />
+      <div id='header-bar'>
+        <Header showSearch={true}/>
+        <div className='params-container'>
+          <Categories />
+          <div className='filter-btn-container'>
+            <Button 
+              label={'Filters'}
+              icon={<AdjustmentsHorizontalIcon className='w-6 h-6 ' />}
+              onClick={filterModal.onOpen}
+            />
+          </div>
+        </div>
+      </div>
       <div className='listing-cards-container'>
         {posts.map((post) => (
           <ListingCard 
-            imgSrc={`data:${post.picture.type};base64,${post.picture.data}`}
+            imgSrc={post.picture}
             price={`$${post.price}`}
             title={post.title}
             location={post.location}
@@ -74,7 +112,7 @@ const Homepage = () => {
                 price: `$${post.price}`, 
                 location: post.location, 
                 description: post.description, 
-                imgSrc: `data:${post.picture.type};base64,${post.picture.data}`, 
+                imgSrc: post.picture, 
                 owner: post.owner,
                 id: post.ownerID
               })

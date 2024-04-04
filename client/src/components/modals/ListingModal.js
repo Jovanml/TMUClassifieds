@@ -44,6 +44,7 @@ const ListingModal = ({postInfo}) => {
       actionLabel={'Message'}
       actionLink={'/message?messageUser=' + postInfo.id + '&messageUsername=' + postInfo.owner} // TODO - make this align with the message page route
       onClose={listingModal.onClose}
+      onSubmit={listingModal.onClose}
       body={bodyContent}
       btnIcon={<ChatBubbleOvalLeftIcon className='w-6 h-6' />}
     />
