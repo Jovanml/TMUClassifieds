@@ -1,4 +1,4 @@
-.MessageComponent{
+.MessageComponent {
     display: flex;
-    height: 88vh;
+    height: calc(100vh - 144px);
 }

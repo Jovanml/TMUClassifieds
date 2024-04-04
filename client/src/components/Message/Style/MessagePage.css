@@ -2,11 +2,11 @@
     width: 82vw;
 }
 
-.chatHeader{
+.chatHeader {
     display: flex;
     border-top: 3px solid #F0F2F5;
     border-bottom: 3px solid #F0F2F5;
-    height: 11vh;
+    height: calc((100vh - 144px) * .125);
     box-sizing: border-box;
     align-items: center;
 }
@@ -24,17 +24,17 @@
     text-align: left;
 }
 
-.messageArea{
+.messageArea {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: calc((100vh - 144px) * .795);
 }
 
-.messageSubmit{
+.messageSubmit {
     border-top: 3px solid #F0F2F5;
     display: flex;
-    height: 7vh;
+    height: calc((100vh - 144px) * .08);
     box-sizing: border-box;
 }
 
