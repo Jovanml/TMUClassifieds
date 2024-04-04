@@ -10,6 +10,8 @@ import { useLocation } from 'react-router-dom'
 
 import { GlobalContext } from '../../contexts/GlobalContext';
 
+import Header from '../header/Header'
+
 function MessageController() {
 
     const { state } = useContext(GlobalContext);
@@ -73,15 +75,21 @@ function MessageController() {
 
     if (messageUserID === '') {
         return (
-            <div className='MessageComponent'>
-                <MessageBar setMessageUserID={setMessageUserID} usersConvos={usersConvo} selectedConvo={messageUserID} />
-            </div>
+            <>
+                <Header showSearch={false} />
+                <div className='MessageComponent'>
+                    <MessageBar setMessageUserID={setMessageUserID} usersConvos={usersConvo} selectedConvo={messageUserID} />
+                </div>
+            </>
         )
     } else {
         return (
-            <div className='MessageComponent'>
-                <MessagePage user={user} usersConvo={usersConvo} messageUserID={mID} setMessageUserID={setMessageUserID} statePass={messageUserID} />
-            </div>
+            <>
+                <Header showSearch={false} />
+                <div className='MessageComponent'>
+                    <MessagePage user={user} usersConvo={usersConvo} messageUserID={mID} setMessageUserID={setMessageUserID} statePass={messageUserID} />
+                </div>
+            </>
         )
     }
 }
