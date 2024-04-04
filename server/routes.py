@@ -123,6 +123,27 @@ def getUserPostsData():
         print(e)
         return "Error while processing your request", 500
 
+@app.get("/get/all/users")
+def getAllUsersBanned():
+    banned = request.args.get('banned')
+    query = {"banned": banned}
+    result = False
+    returnData = []
+    try:
+        client = MongoClient(uri, server_api=ServerApi('1'))
+        db = client["TestCPS630"]
+        collection = db["Users"]
+        tempData = collection.find(query)
+        for row in tempData:
+            result = True
+            returnData.append(json.dumps(row, default=str))
+        if not result:
+            return "No Data", 204
+        return returnData, 200
+    except Exception as e:
+        print(e)
+        return "Error while processing your request", 500
+
 @app.post("/create/user")
 def createUser():
     formData = request.form
