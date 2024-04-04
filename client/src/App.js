@@ -2,7 +2,6 @@ import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login/login';
-import SignUp from './components/Signup/signup';
 import SquareCard from './components/AdminDashboard/admin_dashboard';
 import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
@@ -10,6 +9,7 @@ import { apiAuth, auth } from './services/auth';
 import Homepage from './components/Homepage';
 import { Home } from '@mui/icons-material';
 import NewListing from './components/NewListing/NewListing';
+import Protected from './components/Private';
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -30,11 +30,10 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Homepage />}/>
+                <Route path='/' element={<Protected><Homepage /></Protected>}/>
                 <Route path='login' element={<Login />}/>
-                <Route path='signup' element={<SignUp />}/>
-                <Route path='admin-dashboard' element={<SquareCard />}/>
-                <Route path='new-listing' element={<NewListing />}/>
+                <Route path='admin-dashboard' element={<Protected><SquareCard /></Protected>}/>
+                <Route path='new-listing' element={<Protected><NewListing /></Protected>}/>
             </Routes>
         </BrowserRouter>
   );

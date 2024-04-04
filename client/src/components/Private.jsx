@@ -11,7 +11,7 @@ const Protected = ({ children }) => {
             {children}
         </> 
     ) 
-    : <Navigate to="/"/>
+    : <Navigate to="/login"/>
 }
 
 export default Protected
