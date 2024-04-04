@@ -21,8 +21,8 @@ const Modal = ({
   actionLink, // string
   disabled, // boolean (optional)
   btnIcon, //Icon component
-  // secondaryAction, //() => void (optional)
-  // secondaryActionLabel, // string (optional)
+  secondaryAction, //() => void (optional)
+  secondaryActionLabel, // string (optional)
 }) => {
 
   const [showModal, setShowModal] = useState(isOpen);
@@ -47,11 +47,11 @@ const Modal = ({
     onSubmit();
   }, [disabled, onSubmit]);
 
-  // const handleSecondaryAction = useCallback(() => {
-  //   if (disabled || !secondaryAction ) return;
+  const handleSecondaryAction = useCallback(() => {
+    if (disabled || !secondaryAction ) return;
 
-  //   secondaryAction();
-  // }, [disabled, secondaryAction]); 
+    secondaryAction();
+  }, [disabled, secondaryAction]); 
 
   if (!isOpen) {
     return null;
@@ -85,6 +85,14 @@ const Modal = ({
               <div className='modal-footer'>
                 {footer}
                 <div className='modal-footer-btns'>
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button 
+                      disabled={disabled} 
+                      label={secondaryActionLabel} 
+                      onClick={handleSecondaryAction}
+                      outline
+                    />  
+                  )}
                   <Button 
                     label={actionLabel}
                     onClick={handleSubmit}
