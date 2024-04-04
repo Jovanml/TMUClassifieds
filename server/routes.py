@@ -258,8 +258,8 @@ def deleteUser(id):
 
 @app.get("/get/posts")
 def getData():
-    limit = int(request.args.get('limit'))
-    offset = int(request.args.get('offset'))
+    #limit = int(request.args.get('limit'))
+    #offset = int(request.args.get('offset'))
     location = request.args.get('location')
     priceLess = request.args.get('priceLess')
     priceMore = request.args.get('priceMore')
@@ -285,7 +285,7 @@ def getData():
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client["TestCPS630"]
         collection = db["Posts"]
-        tempData = collection.find(query).skip(offset).limit(limit)
+        tempData = collection.find(query)#.skip(offset).limit(limit)
         for row in tempData:
             results = True
             row["_id"] = str(row["_id"])
@@ -294,7 +294,6 @@ def getData():
             collection = db["Users"]
             userData = collection.find_one(query, get)
             row["owner"] = userData["name"]
-            row['picture']['data'] = row['picture']['data'].decode("utf-8")
             returnData.append(row)
         if not results:
             return "No Data", 204
@@ -308,7 +307,7 @@ def createData():
     formData = request.form
     file = request.files['file']
     postID = ObjectId()
-    record = {"_id": postID, "type": formData["postType"], "title": formData["title"], "description": formData['desc'], "banned": "false", "bought": "false", "buyer": "", "price": float(formData["price"]), "picture": {'data':base64.b64encode(file.read()), 'type': file.mimetype}, "owner": ObjectId(formData["owner"]), "location": formData["location"]}
+    record = {"_id": postID, "type": formData["postType"], "title": formData["title"], "description": formData['desc'], "banned": "false", "bought": "false", "buyer": "", "price": float(formData["price"]), "picture": formData['picture'], "owner": ObjectId(formData["owner"]), "location": formData["location"]}
     try:
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client["TestCPS630"]
