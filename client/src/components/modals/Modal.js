@@ -87,6 +87,7 @@ const Modal = ({
                 <div className='modal-footer-btns'>
                   {secondaryAction && secondaryActionLabel && (
                     <Button 
+                      className='modal-secondary-btn'
                       disabled={disabled} 
                       label={secondaryActionLabel} 
                       onClick={handleSecondaryAction}
