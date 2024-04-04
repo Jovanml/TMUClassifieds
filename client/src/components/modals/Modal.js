@@ -78,7 +78,7 @@ const Modal = ({
                 </div>
               </div>
               {/* BODY */}
-              <div className='modal-body flex-auto'>
+              <div className='modal-body'>
                 {body}
               </div>
               {/* FOOTER */}
