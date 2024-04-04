@@ -21,9 +21,9 @@ function Login() {
         <section className="sign-in">
           <h2>Sign In</h2>
           <div className="social-sign-in">
-            <div className="google-sign-in">
+            <div onClick={logIn}  className="google-sign-in">
               <img src={googleLogo} alt="Google logo" className="google-logo" />
-              <span onClick={logIn}>Continue with Google</span>
+              <span >Continue with Google</span>
             </div>
           </div>
         </section>
