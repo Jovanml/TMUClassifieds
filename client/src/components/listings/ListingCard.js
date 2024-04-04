@@ -4,7 +4,7 @@ import './ListingCard.css';
 const ListingCard = ({imgSrc, price, title, location, onClick}) => {
   return (
     <div 
-      className='card-container mb-2'
+      className='card-container'
       onClick={onClick}
     >
       <div className='img-container'>

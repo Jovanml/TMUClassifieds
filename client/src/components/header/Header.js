@@ -1,7 +1,7 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -17,18 +17,28 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { logOut } from '../../services/auth';
 
-const Header = ({currentUser}) => {
+const Header = () => {
   const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
-
   const isMobile = useMediaQuery(mobileBreakpoint);
+  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState(queryParams.get('search') || '');
 
-  const navigate = useNavigate();
   const toggleMenuOpen = useCallback(() => {
     setMenuIsOpen(value => !value);
   }, [])
+
+  const onSearchClick = () => {
+    queryParams.set('search', searchInput);
+    const newSearch = `?${queryParams.toString()}`;
+    navigate({ search : newSearch });
+  }
 
   useEffect(() => {
     // function to handle window resize
@@ -41,6 +51,7 @@ const Header = ({currentUser}) => {
     
     window.addEventListener('resize', handleResize);
     handleResize();
+    
   }, [])
 
   const mobileSearch = (
@@ -56,9 +67,19 @@ const Header = ({currentUser}) => {
       <div className='search-bar search-bar-mobile'>
         <img src={searchIcon} alt='search' />
         <div>
-          <input className='search-text-input' name='search-input' placeholder='Search TMUFinds' />
+          <input 
+            className='search-text-input'
+            type='text'
+            placeholder='Search TMUFinds'
+            name='search-input'
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
         </div>
-        <button className='search-btn'>
+        <button 
+          className='search-btn'
+          onClick={onSearchClick}
+        >
           Search
         </button>
       </div>
@@ -83,9 +104,19 @@ const Header = ({currentUser}) => {
         <div className='search-bar'>
           <img src={searchIcon} alt='search' />
           <div>
-            <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
+            <input 
+              className='search-text-input'
+              type='text'
+              placeholder='Search TMUFinds'
+              name='search-input'
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
           </div>
-          <button className='search-btn'>
+          <button 
+            className='search-btn'
+            onClick={onSearchClick}
+          >
             Search
           </button>
         </div>

@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 
 // Components
 import Button from "../buttons/Button";
+import { Link } from "react-router-dom";
 
 // Icons
 import { XCircleIcon } from "@heroicons/react/24/outline";
@@ -21,8 +22,8 @@ const Modal = ({
   actionLink, // string
   disabled, // boolean (optional)
   btnIcon, //Icon component
-  // secondaryAction, //() => void (optional)
-  // secondaryActionLabel, // string (optional)
+  secondaryAction, //() => void (optional)
+  secondaryActionLabel, // string (optional)
 }) => {
 
   const [showModal, setShowModal] = useState(isOpen);
@@ -47,11 +48,11 @@ const Modal = ({
     onSubmit();
   }, [disabled, onSubmit]);
 
-  // const handleSecondaryAction = useCallback(() => {
-  //   if (disabled || !secondaryAction ) return;
+  const handleSecondaryAction = useCallback(() => {
+    if (disabled || !secondaryAction ) return;
 
-  //   secondaryAction();
-  // }, [disabled, secondaryAction]); 
+    secondaryAction();
+  }, [disabled, secondaryAction]); 
 
   if (!isOpen) {
     return null;
@@ -78,20 +79,42 @@ const Modal = ({
                 </div>
               </div>
               {/* BODY */}
-              <div className='modal-body flex-auto'>
+              <div className='modal-body'>
                 {body}
               </div>
               {/* FOOTER */}
               <div className='modal-footer'>
                 {footer}
                 <div className='modal-footer-btns'>
-                  <Button 
-                    label={actionLabel}
-                    onClick={handleSubmit}
-                    disabled={disabled}
-                    btnLink={actionLink}
-                    icon={btnIcon}
-                  />
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button 
+                      className='modal-secondary-btn'
+                      disabled={disabled} 
+                      label={secondaryActionLabel} 
+                      onClick={handleSecondaryAction}
+                      outline
+                    />  
+                  )}
+                  {actionLink ? (
+                    <Link
+                      className='btn-with-link'
+                      to={actionLink}
+                    >
+                      <Button 
+                        label={actionLabel}
+                        onClick={handleSubmit}
+                        disabled={disabled}
+                        icon={btnIcon}
+                      />
+                    </Link>
+                  ) : (
+                    <Button 
+                      label={actionLabel}
+                      onClick={handleSubmit}
+                      disabled={disabled}
+                      icon={btnIcon}
+                    />
+                  )}
                 </div>
               </div>
             </div>

@@ -44,6 +44,7 @@ const ListingModal = ({postInfo}) => {
       actionLabel={'Message'}
       actionLink={'/chat'} // TODO - make this align with the message page route
       onClose={listingModal.onClose}
+      onSubmit={listingModal.onClose}
       body={bodyContent}
       btnIcon={<ChatBubbleOvalLeftIcon className='w-6 h-6' />}
     />
