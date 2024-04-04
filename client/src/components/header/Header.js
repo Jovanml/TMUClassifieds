@@ -1,7 +1,7 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -19,15 +19,23 @@ const Header = ({currentUser}) => {
   const mobileBreakpoint = '(max-width: 640px)'
   const isMobile = useMediaQuery(mobileBreakpoint);
   
-  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
 
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState(queryParams.get('search') || '');
 
   const toggleMenuOpen = useCallback(() => {
     setMenuIsOpen(value => !value);
   }, [])
+
+  const onSearchClick = () => {
+    queryParams.set('search', searchInput);
+    const newSearch = `?${queryParams.toString()}`;
+    navigate({ search : newSearch });
+  }
 
   useEffect(() => {
     // function to handle window resize
@@ -40,6 +48,7 @@ const Header = ({currentUser}) => {
     
     window.addEventListener('resize', handleResize);
     handleResize();
+    
   }, [])
 
   const mobileSearch = (
@@ -66,7 +75,7 @@ const Header = ({currentUser}) => {
         </div>
         <button 
           className='search-btn'
-          onClick={() => setSearchParams({...searchParams, 'search': searchInput})}
+          onClick={onSearchClick}
         >
           Search
         </button>
@@ -103,7 +112,7 @@ const Header = ({currentUser}) => {
           </div>
           <button 
             className='search-btn'
-            onClick={() => setSearchParams({...searchParams, 'search': searchInput})}
+            onClick={onSearchClick}
           >
             Search
           </button>

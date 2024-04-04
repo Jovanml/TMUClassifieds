@@ -1,17 +1,25 @@
 // Packages
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Styles
 import './Category.css';
 
-const Category = ({label, icon, selected}) => {
+const Category = ({label, icon, param}) => {
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+
+  const onCategoryClick = () => {
+    queryParams.set('category', param);
+    const newSearch = `?${queryParams.toString()}`;
+    navigate({ search : newSearch });
+  }
 
   return (
     <div 
-      className={`category-container ${selected ? 'selected-category' : 'selected-category-not'}`}
-      onClick={() => setSearchParams({...searchParams, 'category': label})}
+      className={`category-container ${queryParams.get('category') === param ? 'selected-category' : 'selected-category-not'}`}
+      onClick={onCategoryClick}
     >
       {icon}
       <div className='category-label'>
