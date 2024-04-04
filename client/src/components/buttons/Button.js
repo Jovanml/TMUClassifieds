@@ -1,6 +1,3 @@
-// Packages
-import { Link } from 'react-router-dom'
-
 // Styles
 import './Button.css';
 

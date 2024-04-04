@@ -17,7 +17,7 @@ function MessageBar(props){
             <aside className="userbar">
                 <div id={"addChatHeader"}>
                     <h1 id={"addChatText"}>Chats</h1>
-                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' /></button>
+                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' alt='avatar'/></button>
                 </div>
             </aside>
         )
@@ -26,7 +26,7 @@ function MessageBar(props){
             <aside className="userbar">
                 <div id={"addChatHeader"}>
                     <h1 id={"addChatText"}>Chats</h1>
-                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' /></button>
+                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' alt='avatar' /></button>
                 </div>
                 <div id={'messageBarUserList'}>
                     {Object.keys(usersConvos).map(user => {

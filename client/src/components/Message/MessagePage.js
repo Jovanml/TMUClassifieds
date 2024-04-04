@@ -76,6 +76,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       if(isOpen.current){
         getUserList()
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
 
     useEffect(() => {
@@ -97,6 +98,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
         })
       }
       fetchData()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messageRef, statePass])
 
     const dummy = useRef();

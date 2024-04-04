@@ -5,8 +5,8 @@
 
 .chatHeader {
     display: flex;
-    border-top: 3px solid #DADADA;
-    border-bottom: 3px solid #DADADA;
+    border-top: 3px solid #F0F2F5;
+    border-bottom: 3px solid #F0F2F5;
     height: calc((100vh - 144px) * .125);
     box-sizing: border-box;
     align-items: center;
@@ -34,7 +34,7 @@
 }
 
 .messageSubmit {
-    border-top: 3px solid #DADADA;
+    border-top: 3px solid #F0F2F5;
     display: flex;
     height: calc((100vh - 144px) * .08);
     box-sizing: border-box;
@@ -50,14 +50,14 @@
     resize: none;
     padding-left: 2px;
     outline: none;
-    background-color: #f1f4ff;
+    background-color: white;
 }
 
 #sendButton {
     height: 100%;
     background-color: transparent;
     background-repeat: no-repeat;
-    border: 1px solid #f1f4ff;
+    border: 1px solid white;
     cursor: pointer;
     overflow: hidden;
     outline: none;

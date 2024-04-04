@@ -28,6 +28,8 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -38,6 +40,7 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
         }
 
         setNumChars(loc.length);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loc, setIsValueInput])
     
     const onChange = (e) => {

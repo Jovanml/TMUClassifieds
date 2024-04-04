@@ -30,6 +30,7 @@ function AddChat(props){
                     </div>
                     )
             }
+            return null;
         })}
     </div>
     )

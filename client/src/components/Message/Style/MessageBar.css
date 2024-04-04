@@ -1,8 +1,8 @@
 .userbar {
     /*width: 18vw;*/
     width: 300px;
-    border-top: 3px solid #DADADA;
-    border-right: 3px solid #DADADA;
+    border-top: 3px solid #F0F2F5;
+    border-right: 3px solid #F0F2F5;
 }
 
 #addChatHeader {
@@ -32,7 +32,7 @@
     border-radius: 50%;
     border: 1px 0px 0px 0px;
     opacity: 0px;
-    background: #f1f4ff;
+    background: white;
     border: 1px solid #F1F3F6;
     box-shadow: 0px 2px 4px 0px #00000040;
     padding: 0.5rem;

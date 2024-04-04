@@ -66,9 +66,9 @@ const NewListing = () => {
     return (
         <>
             <Header showSearch={false } />
-            <Box height='calc(100vh - 144px)' overflow='hidden'>
+            <Box>
                 <Container>
-                    <Box minHeight='600px' m='30px 0px'>
+                    <Box height='400px' m='30px 0px'>
                         {formComponents[currentStep]}
                     </Box>
                     <ProgressBar steps={6} current={currentStep}/>
