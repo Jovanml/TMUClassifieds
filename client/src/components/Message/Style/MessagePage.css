@@ -38,7 +38,7 @@
     box-sizing: border-box;
 }
 
-#inputMessage{
+#inputMessage {
     width: 100%;
     border: none;
     height: 100%;
@@ -48,13 +48,14 @@
     resize: none;
     padding-left: 2px;
     outline: none;
+    background-color: #f1f4ff;
 }
 
-#sendButton{
+#sendButton {
     height: 100%;
     background-color: transparent;
     background-repeat: no-repeat;
-    border: 1px solid white;
+    border: 1px solid #f1f4ff;
     cursor: pointer;
     overflow: hidden;
     outline: none;
