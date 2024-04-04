@@ -1,7 +1,7 @@
 // Packages
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 // Hooks
 import useListingModal from "../hooks/useListingModal";
@@ -20,6 +20,7 @@ import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 // Styles
 import './Homepage.css';
+import { GlobalContext } from "../contexts/GlobalContext";
 
 
 
@@ -34,6 +35,8 @@ const Homepage = () => {
   const [postInfo, setPostInfo] = useState({});
   const [tempHeader, setTempHeader] = useState(false);
 
+  const { state } = useContext(GlobalContext);
+  
 
   useEffect(() => {
     function handleOnScroll() {
@@ -88,6 +91,7 @@ const Homepage = () => {
     })
   };
 
+  if (state.user.admin === "true") return <Navigate to="/admin-dashboard" />;
   return (
     <>
       <ListingModal postInfo={postInfo}/>

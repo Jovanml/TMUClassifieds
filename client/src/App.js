@@ -10,6 +10,7 @@ import Homepage from './components/Homepage';
 import NewListing from './components/NewListing/NewListing';
 import Protected from './components/Private';
 import MessageController from './components/Message/MessageController'
+import Banned from './components/Banned';
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -35,6 +36,7 @@ function App() {
                 <Route path='admin-dashboard' element={<Protected><SquareCard /></Protected>}/>
                 <Route path='new-listing' element={<Protected><NewListing /></Protected>} />
                 <Route path='message' element={<Protected><MessageController /></Protected>} />
+                <Route path='banned' element={<Banned />} />
             </Routes>
         </BrowserRouter>
   );
