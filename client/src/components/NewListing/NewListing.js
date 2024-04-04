@@ -5,6 +5,7 @@ import { AddCategory, AddPhoto, AddTitle, AddDescription, AddPrice, AddLoc} from
 import { useNavigate } from 'react-router-dom';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { addPost } from '../../services/posts';
+import Header from '../header/Header'
 
 const NewListing = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -59,21 +60,24 @@ const NewListing = () => {
     }
 
     return (
-        <Box height='100vh'>
-            <Container>
-                <Box minHeight='600px' m='30px 0px'>
-                    {formComponents[currentStep]}
-                </Box>
-                <ProgressBar steps={6} current={currentStep}/>
-                <Box display='flex' justifyContent='space-between' mt='20px' height='45px'>
-                    <Button variant='contained' backgroundcolor='black' disabled={currentStep === 0} onClick={prevStep}>Back</Button>
-                    <Button variant='contained' backgroundcolor='black' disabled={!isValidInput} 
-                    sx={{ display: currentStep !== 5 ? 'default' : 'none' }} onClick={nextStep}>Next</Button>
-                    <Button variant='contained' backgroundcolor='black' sx={{ display: currentStep === 5 ? 'default' : 'none' }} 
-                    onClick={handleSubmit}>Submit</Button>
-                </Box>
-            </Container>
-        </Box>
+        <>
+            <Header showSearch={false } />
+            <Box height='calc(100vh - 144px)' overflow='hidden'>
+                <Container>
+                    <Box minHeight='600px' m='30px 0px'>
+                        {formComponents[currentStep]}
+                    </Box>
+                    <ProgressBar steps={6} current={currentStep}/>
+                    <Box display='flex' justifyContent='space-between' mt='20px' height='45px'>
+                        <Button variant='contained' backgroundcolor='black' disabled={currentStep === 0} onClick={prevStep}>Back</Button>
+                        <Button variant='contained' backgroundcolor='black' disabled={!isValidInput} 
+                        sx={{ display: currentStep !== 5 ? 'default' : 'none' }} onClick={nextStep}>Next</Button>
+                        <Button variant='contained' backgroundcolor='black' sx={{ display: currentStep === 5 ? 'default' : 'none' }} 
+                        onClick={handleSubmit}>Submit</Button>
+                    </Box>
+                </Container>
+            </Box>
+        </>
     )
 }
 
