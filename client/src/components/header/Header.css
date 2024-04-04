@@ -38,6 +38,7 @@
 
 .search-text-input {
   width: 100%;
+  background-color: #f1f4ff;
 }
 
 .search-text-input:focus-visible {
