@@ -31,7 +31,6 @@ function MessageController() {
     const [messageUserID, setMessageUserID] = useState(messageUser === '' ? Object.keys(usersConvo).length > 0 ? { 'id': Object.keys(usersConvo)[0], 'name': usersConvo[Object.keys(usersConvo)[0]]['name'] } : { 'id': '', 'name': '' } : { 'id': messageUser, 'name': messageUsername })
     const mID = messageUserID['id']
     const mN = messageUserID['name']
-    console.log(messageUserID)
 
     useEffect(() => {
         async function fetchConvos() {
@@ -74,30 +73,6 @@ function MessageController() {
         console.log('thisrun?')
         fetchConvos()
     }, [messageUserID])
-
-    /*
-    if (!Object.keys(usersConvo).includes(mID)) {
-        setUsersConvo({
-            ...usersConvo,
-            [mID]: { 'id': user['_id'] + mID, 'name': mN }
-        })
-        fetch('http://127.0.0.1:5000/add/user/conversation', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'id': user['_id'],
-                'name': user['name'],
-                'convoID': user['_id'] + mID,
-                'messageUserID': mID,
-                'messageUserName': mN
-            })
-        })
-        .catch(err => {
-            console.error(err)
-        })
-    }*/
 
     if (messageUserID === '') {
         return (
