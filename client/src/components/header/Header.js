@@ -17,7 +17,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { logOut } from '../../services/auth';
 
-const Header = ({showSearch}) => {
+const Header = ({showSearch, showChat=true, showNew=true, showHomepage=true}) => {
   const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
   const isMobile = useMediaQuery(mobileBreakpoint);
@@ -105,9 +105,15 @@ const Header = ({showSearch}) => {
 
   return (
     <header className='header'>
-      <Link to={'/'} className='logo'>
-        <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
-      </Link>
+      {showHomepage ? (
+        <Link to={'/'} className='logo'>
+          <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
+        </Link>
+      ) : (
+        <Link to={'/admin-dashboard'} className='logo'>
+          <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
+        </Link>
+      )}
       {!isMobile && showSearch && (
         <div className='search-bar'>
           <img src={searchIcon} alt='search' />
@@ -141,12 +147,16 @@ const Header = ({showSearch}) => {
             <MagnifyingGlassIcon className='w-9 h-9' />
           </button>
         )}
-        <button className='btn-circle'>
-                  <ChatBubbleOvalLeftIcon className='w-9 h-9' onClick={() => navigate('/message')} />
-        </button>
-        <button className='btn-circle' onClick={() => navigate('/new-listing')}>
-          <PlusCircleIcon className='w-9 h-9' />
-        </button>
+        {showChat && (
+          <button className='btn-circle'>
+            <ChatBubbleOvalLeftIcon className='w-9 h-9' onClick={() => navigate('/message')} />
+          </button>
+        )}
+        {showNew && (
+          <button className='btn-circle' onClick={() => navigate('/new-listing')}>
+            <PlusCircleIcon className='w-9 h-9' />
+          </button>
+        )}
         <div className='menu'>
           <button 
             className='wide-btn-circle btn-circle'

@@ -1,11 +1,18 @@
 import React from 'react';
 import {Typography, Card, CardContent, Divider } from '@mui/material';
 import { AccountCircle, Delete } from '@mui/icons-material';
+import Header from '../header/Header';
 
 
 function SquareCard() {
   return (
     <div>
+      <Header 
+        showSearch={false} 
+        showChat={false} 
+        showNew={false}
+        showHomepage={false}
+      />
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
         <Card sx={{ width: 200, height: 200, margin: '0 10px', borderRadius: '20px' }}>
           <CardContent>
