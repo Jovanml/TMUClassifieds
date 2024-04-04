@@ -3,7 +3,7 @@ import { Box, Typography, Button, TextField } from '@mui/material';
 
 const AddPrice = ({ price, setPrice }) => {
     function isValidInput(str) {
-        return /^([0](\.|.\d{1,2})?|[1-9]+(\.|.\d{1,2})?)$/.test(str);
+        return /^([0](\.|\.\d{1,2})?|[1-9]\d*(\.|\.\d{1,2})?)$/.test(str);
     }
     
     const handleOnChange = (e) => {

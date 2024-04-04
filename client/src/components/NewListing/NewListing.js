@@ -33,6 +33,10 @@ const NewListing = () => {
     }
 
     const prevStep = () => {
+        if (currentStep === 0) {
+            return navigate("/");
+        }
+
         setCurrentStep(curr => curr - 1);
     }
     

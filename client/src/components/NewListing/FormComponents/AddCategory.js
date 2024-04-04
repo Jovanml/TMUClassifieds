@@ -1,20 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import { DocumentMagnifyingGlassIcon, ShoppingCartIcon, AcademicCapIcon } from '@heroicons/react/24/solid';
-const categories = [
-    {
-      label: 'Items Wanted',
-      icon: <DocumentMagnifyingGlassIcon className='w-6 h-6'/>
-    },
-    {
-      label: 'Items for Sale',
-      icon: <ShoppingCartIcon className='w-6 h-6'/>
-    },
-    {
-      label: 'Academic Services',
-      icon: <AcademicCapIcon className='w-6 h-6' />
-    }
-]
+import { categories } from '../../categories/Categories';
 
 const AddCategory = ({ category, setCategory, setIsValueInput }) => {
     const handleClick = (label) => {

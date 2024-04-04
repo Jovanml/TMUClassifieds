@@ -7,7 +7,6 @@ import { onAuthStateChanged } from '@firebase/auth';
 import { GlobalContext } from './contexts/GlobalContext';
 import { apiAuth, auth } from './services/auth';
 import Homepage from './components/Homepage';
-import { Home } from '@mui/icons-material';
 import NewListing from './components/NewListing/NewListing';
 import Protected from './components/Private';
 import MessageController from './components/Message/MessageController'
