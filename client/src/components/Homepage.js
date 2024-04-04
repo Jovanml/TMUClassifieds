@@ -30,6 +30,9 @@ const Homepage = () => {
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
+
+  // add location.search to dependency array
+  // no data -> if returns 204 set posts to empty array
   useEffect(() => {
     const fetchData = async() => {
       try {
@@ -45,6 +48,20 @@ const Homepage = () => {
     }
 
     fetchData();
+
+    function handleOnScroll() {
+      const header = document.getElementById('header-bar');
+      console.log(header.offsetTop);
+      const sticky = header.offsetTop;
+
+      if (window.scrollY > sticky) {
+        header.classList.add('header-sticky');
+      } else {
+        header.classList.remove('header-sticky');
+      }
+    }
+
+    window.addEventListener('scroll', handleOnScroll);
   }, []);
 
   const handleOnClick = ({title, price, location, description, imgSrc, owner}) => {
@@ -63,21 +80,23 @@ const Homepage = () => {
     <>
       <ListingModal postInfo={postInfo}/>
       <FilterModal />
-      <Header />
-      <div className='params-container'>
-        <Categories />
-        <div className='filter-btn-container'>
-          <Button 
-            label={'Filters'}
-            icon={<AdjustmentsHorizontalIcon className='w-6 h-6 ' />}
-            onClick={filterModal.onOpen}
-          />
+      <div id='header-bar'>
+        <Header />
+        <div className='params-container'>
+          <Categories />
+          <div className='filter-btn-container'>
+            <Button 
+              label={'Filters'}
+              icon={<AdjustmentsHorizontalIcon className='w-6 h-6 ' />}
+              onClick={filterModal.onOpen}
+            />
+          </div>
         </div>
       </div>
       <div className='listing-cards-container'>
         {posts.map((post) => (
           <ListingCard 
-            imgSrc={`data:${post.picture.type};base64,${post.picture.data}`}
+            imgSrc={post.picture}
             price={`$${post.price}`}
             title={post.title}
             location={post.location}
@@ -87,7 +106,7 @@ const Homepage = () => {
                 price: `$${post.price}`, 
                 location: post.location, 
                 description: post.description, 
-                imgSrc: `data:${post.picture.type};base64,${post.picture.data}`, 
+                imgSrc: post.picture, 
                 owner: post.owner,
               })
             }}
