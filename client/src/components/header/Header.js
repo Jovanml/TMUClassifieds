@@ -17,7 +17,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { logOut } from '../../services/auth';
 
-const Header = ({currentUser}) => {
+const Header = () => {
   const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
   const isMobile = useMediaQuery(mobileBreakpoint);
