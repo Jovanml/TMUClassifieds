@@ -6,7 +6,14 @@ function AddChat(props){
     let userList = props.userList
     let convoListUsers = Object.keys(props.usersConvo)
 
-    function newChat(e){
+    function newChat(e) {
+        props.setUsersConvo({
+            ...props.usersConvo,
+            [e.currentTarget.id]: {
+                'id': props.user['_id'] + e.currentTarget.id,
+                'name': e.currentTarget.querySelector('#addUserUserName').innerText
+            }
+        })
         props.setMessageUserID({'id': e.currentTarget.id, 'name': e.currentTarget.querySelector('#addUserUserName').innerText})
         props.setMessages([])
         props.closeModal()

@@ -14,8 +14,8 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePass}){
-
+function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, statePass, setUsersConvo }){
+    console.log(usersConvo)
     const messageDBID = usersConvo[messageUserID]['id']
     const messageName = usersConvo[messageUserID]['name']
     const [messages, setMessages] = useState([])
@@ -32,7 +32,8 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '10vw',
-        maxHeight: '70vh'
+        maxHeight: '70vh',
+        minWidth: '20vw'
       },
     };
 
@@ -150,7 +151,7 @@ function MessagePage({user, usersConvo, messageUserID, setMessageUserID, statePa
         <Modal isOpen={open} onRequestClose={closeModal} style={customStyles} contentLabel="Add Chat" ariaHideApp={false}>
           <div className='addUserList'>
             <h1 id='addChatHeader'>Add Chat</h1>
-            <AddChat user={user} userList={userList} usersConvo={usersConvo} setMessageUserID={setMessageUserID} closeModal={closeModal} setMessages={setMessages}/>
+                    <AddChat user={user} userList={userList} usersConvo={usersConvo} setMessageUserID={setMessageUserID} closeModal={closeModal} setMessages={setMessages} setUsersConvo={setUsersConvo} />
           </div>
         </Modal>
         <MessageBar convoIDUpdate={setMessageUserID} usersConvos={usersConvo} selectedConvo={messageUserID} openModal={openModal} setMessageUserID={setMessageUserID} setMessages={setMessages}/>
