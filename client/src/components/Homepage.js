@@ -58,7 +58,7 @@ const Homepage = () => {
   return (
     <>
       <ListingModal postInfo={postInfo}/>
-      <Header />
+      <Header showSearch={true} />
       <Categories />
       <div className='listing-cards-container'>
         {posts.map((post) => (

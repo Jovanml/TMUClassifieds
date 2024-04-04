@@ -17,7 +17,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { logOut } from '../../services/auth';
 
-const Header = ({currentUser}) => {
+const Header = ({currentUser, showSearch}) => {
   const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
 
@@ -78,31 +78,31 @@ const Header = ({currentUser}) => {
     <header className='header'>
       <Link to={'/'} className='logo'>
         <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
-      </Link>
-      {!isMobile && (
-        <div className='search-bar'>
-          <img src={searchIcon} alt='search' />
-          <div>
-            <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
-          </div>
-          <button className='search-btn'>
-            Search
-          </button>
-        </div>
-      )}
-      <div className='header-btns'>
-        {isMobile && (
-          <button 
-            className='btn-circle' 
-            onClick={() => {
-              setMobileSearchClicked(true)
-            }}
-          >
-            <MagnifyingGlassIcon className='w-9 h-9' />
-          </button>
-        )}
+       </Link>
+          {!isMobile && showSearch && (
+            <div className='search-bar'>
+              <img src={searchIcon} alt='search' />
+              <div>
+                <input className='search-text-input' name='search-input' placeholder='Search TMUFinds'/>
+              </div>
+              <button className='search-btn'>
+                Search
+              </button>
+            </div>
+          )}
+         <div className='header-btns'>
+            {isMobile && showSearch && (
+              <button 
+                className='btn-circle' 
+                onClick={() => {
+                  setMobileSearchClicked(true)
+                }}
+              >
+                <MagnifyingGlassIcon className='w-9 h-9' />
+              </button>
+                  )}
         <button className='btn-circle'>
-          <ChatBubbleOvalLeftIcon className='w-9 h-9'/>
+                  <ChatBubbleOvalLeftIcon className='w-9 h-9' onClick={() => navigate('/message')} />
         </button>
         <button className='btn-circle' onClick={() => navigate('/new-listing')}>
           <PlusCircleIcon className='w-9 h-9' />
