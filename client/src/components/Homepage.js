@@ -1,6 +1,7 @@
 // Packages
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
 
 // Hooks
 import useListingModal from "../hooks/useListingModal";
@@ -27,31 +28,15 @@ const Homepage = () => {
   const listingModal = useListingModal();
   const filterModal = useFilterModal();
 
+  const location = useLocation();
+
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
 
-  // add location.search to dependency array
-  // no data -> if returns 204 set posts to empty array
   useEffect(() => {
-    const fetchData = async() => {
-      try {
-        await axios.get('http://127.0.0.1:5000/get/posts?limit=10&offset=0')
-          .then(response => response.data)
-          .then(data =>{
-              setPosts(data);
-              console.log(data);
-          })
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    fetchData();
-
     function handleOnScroll() {
       const header = document.getElementById('header-bar');
-      console.log(header.offsetTop);
       const sticky = header.offsetTop;
 
       if (window.scrollY > sticky) {
@@ -63,6 +48,26 @@ const Homepage = () => {
 
     window.addEventListener('scroll', handleOnScroll);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        await axios.get(`http://127.0.0.1:5000/get/posts${location.search}`)
+          .then(response => {
+            if (response.status === 200) {
+              setPosts(response.data);
+            }
+            if (response.status === 204) {
+              setPosts([]);
+            }
+          })
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetchData();
+  }, [location.search]);
 
   const handleOnClick = ({title, price, location, description, imgSrc, owner}) => {
     listingModal.onOpen();
