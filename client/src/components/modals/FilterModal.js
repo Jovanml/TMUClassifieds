@@ -48,7 +48,7 @@ const FilterModal = () => {
     setLocation('');
     setPriceMore(0);
     setPriceLess(10000);
-    setPriceValue([priceMore, priceLess])
+    setPriceValue([0, 10000])
   }
   
 
