@@ -32,17 +32,23 @@ const Homepage = () => {
 
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
+  const [tempHeader, setTempHeader] = useState(false);
 
 
   useEffect(() => {
     function handleOnScroll() {
       const header = document.getElementById('header-bar');
+      const listingContainer = document.getElementById('listing-card-container');
       const sticky = header?.offsetTop;
 
       if (window.scrollY > sticky) {
         header?.classList.add('header-sticky');
+        listingContainer?.classList.add('listing-cards-container-sticky');
+        setTempHeader(true);
       } else {
         header?.classList.remove('header-sticky');
+        listingContainer?.classList.remove('listing-cards-container-sticky');
+        setTempHeader(false);
       }
     }
     
@@ -99,7 +105,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div className='listing-cards-container'>
+      <div id='listing-card-container' className='listing-cards-container'>
         {posts.map((post) => (
           <ListingCard 
             key={post._id}

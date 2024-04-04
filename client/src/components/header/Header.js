@@ -40,6 +40,13 @@ const Header = ({showSearch}) => {
     navigate({ search : newSearch });
   }
 
+  const enterPress = () => {
+    let key = window.event.keyCode;
+    if (key === 13) {
+      onSearchClick();
+    }
+  }
+
   useEffect(() => {
     // function to handle window resize
     function handleResize() {
@@ -74,6 +81,7 @@ const Header = ({showSearch}) => {
             name='search-input'
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
+            onKeyDown={enterPress}
           />
         </div>
         <button 
@@ -111,6 +119,7 @@ const Header = ({showSearch}) => {
               name='search-input'
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={enterPress}
             />
           </div>
           <button 

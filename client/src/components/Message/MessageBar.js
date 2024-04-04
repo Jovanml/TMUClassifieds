@@ -1,6 +1,7 @@
 import './Style/MessageBar.css'
 import MessageBarUser from './MessageBarUser'
 import addChat from '../../assets/addChat.svg'
+import { PencilSquareIcon } from '@heroicons/react/24/solid';
 
 function MessageBar(props){
 
@@ -17,7 +18,7 @@ function MessageBar(props){
             <aside className="userbar">
                 <div id={"addChatHeader"}>
                     <h1 id={"addChatText"}>Chats</h1>
-                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' alt='avatar'/></button>
+                    <button onClick={props.openModal} id={"addChatButton"}><PencilSquareIcon className='w-7 h-7'/></button>
                 </div>
             </aside>
         )
@@ -26,7 +27,7 @@ function MessageBar(props){
             <aside className="userbar">
                 <div id={"addChatHeader"}>
                     <h1 id={"addChatText"}>Chats</h1>
-                    <button onClick={props.openModal} id={"addChatButton"}><img src={addChat} id='addChatImg' alt='avatar' /></button>
+                    <button onClick={props.openModal} id={"addChatButton"}><PencilSquareIcon className='w-7 h-7'/></button>
                 </div>
                 <div id={'messageBarUserList'}>
                     {Object.keys(usersConvos).map(user => {

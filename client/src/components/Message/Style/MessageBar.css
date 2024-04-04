@@ -7,24 +7,18 @@
 
 #addChatHeader {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: calc((100vh - 144px) * .125);
+    padding: 2rem; 
 }
 
 #addChatText {
-    display: none;
-}
-
-@media screen and (min-width: 1000px) {
-    #addChatText {
-        font-family: Inter;
-        font-size: 3rem;
-        font-weight: 800;
-        line-height: 60.51px;
-        text-align: left;
-        display: block;
-    }
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 60.51px;
+    text-align: left;
+    display: block;
 }
 
 #addChatButton {

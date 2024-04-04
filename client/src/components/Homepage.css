@@ -8,6 +8,10 @@
   top: 0;
 }
 
+.listing-cards-container-sticky {
+  margin-top: 17.85rem;
+}
+
 .listing-cards-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
