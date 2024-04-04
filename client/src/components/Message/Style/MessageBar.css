@@ -1,13 +1,15 @@
-.userbar{
-    width: 18vw;
-    border-top: 3px solid #F0F2F5;
-    border-right: 3px solid #F0F2F5;
+.userbar {
+    /*width: 18vw;*/
+    width: 300px;
+    border-top: 3px solid #DADADA;
+    border-right: 3px solid #DADADA;
 }
 
-#addChatHeader{
+#addChatHeader {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: calc((100vh - 144px) * .125);
 }
 
 #addChatText {
@@ -30,9 +32,10 @@
     border-radius: 50%;
     border: 1px 0px 0px 0px;
     opacity: 0px;
-    background: #FFFFFF;
+    background: #f1f4ff;
     border: 1px solid #F1F3F6;
     box-shadow: 0px 2px 4px 0px #00000040;
+    padding: 0.5rem;
 }
 
     #addChatButton:hover {
@@ -41,10 +44,11 @@
 
 #messageBarUserList {
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: calc((100vh - 144px) * .87);
 }
 
 #addChatImg {
-    height: 5vh;
-    max-height: 60px;
-    padding: 2px;
+    height: 2.25rem;
 }

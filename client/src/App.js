@@ -10,6 +10,7 @@ import Homepage from './components/Homepage';
 import { Home } from '@mui/icons-material';
 import NewListing from './components/NewListing/NewListing';
 import Protected from './components/Private';
+import MessageController from './components/Message/MessageController'
 
 function App() {
     const { dispatch } = useContext(GlobalContext);
@@ -33,7 +34,8 @@ function App() {
                 <Route path='/' element={<Protected><Homepage /></Protected>}/>
                 <Route path='login' element={<Login />}/>
                 <Route path='admin-dashboard' element={<Protected><SquareCard /></Protected>}/>
-                <Route path='new-listing' element={<Protected><NewListing /></Protected>}/>
+                <Route path='new-listing' element={<Protected><NewListing /></Protected>} />
+                <Route path='message' element={<Protected><MessageController /></Protected>} />
             </Routes>
         </BrowserRouter>
   );

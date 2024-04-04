@@ -4,7 +4,13 @@ import addChat from '../../assets/addChat.svg'
 
 function MessageBar(props){
 
-    const usersConvos = props.usersConvos
+    const usersConvos = Object.keys(props.usersConvos).sort().reduce(
+        (obj, key) => {
+            obj[key] = props.usersConvos[key];
+            return obj;
+        },
+        {}
+    );
 
     if (props.selectedConvo === ''){
         return(

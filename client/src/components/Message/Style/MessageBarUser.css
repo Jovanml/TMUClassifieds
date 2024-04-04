@@ -1,6 +1,6 @@
-.messageBarUser{
+.messageBarUser {
     display: flex;
-    border: 2px solid white;
+    border: 2px solid #f1f4ff;
     align-items: center;
     padding-left: 2%;
     padding-top: 3%;
@@ -27,5 +27,6 @@
 }
 
 .messageBarUserImg {
-    height: 9vh;
+    /*height: 9vh;*/
+    height: 5.125rem;
 }

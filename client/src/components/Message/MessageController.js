@@ -10,6 +10,8 @@ import { useLocation } from 'react-router-dom'
 
 import { GlobalContext } from '../../contexts/GlobalContext';
 
+import Header from '../header/Header'
+
 function MessageController() {
 
     const { state } = useContext(GlobalContext);
@@ -37,7 +39,30 @@ function MessageController() {
             }).then(response => {
                 if (response.status === 200) {
                     response.json().then((data) => {
-                        setUsersConvo(data['conversations'])
+                        if (!Object.keys(data['conversations']).includes(mID)) {
+                            setUsersConvo({
+                                ...usersConvo,
+                                [mID]: { 'id': user['_id'] + mID, 'name': mN }
+                            })
+                            fetch('http://127.0.0.1:5000/add/user/conversation', {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    'id': user['_id'],
+                                    'name': user['name'],
+                                    'convoID': user['_id'] + mID,
+                                    'messageUserID': mID,
+                                    'messageUserName': mN
+                                })
+                            })
+                                .catch(err => {
+                                    console.error(err)
+                                })
+                        } else {
+                            setUsersConvo(data['conversations'])
+                        }
                     })
                 }
             })
@@ -45,43 +70,27 @@ function MessageController() {
                 console.error(err)
             })
         }
+        console.log('thisrun?')
         fetchConvos()
     }, [messageUserID])
 
-    if (!Object.keys(usersConvo).includes(mID)) {
-        setUsersConvo({
-            ...usersConvo,
-            [mID]: { 'id': user['_id'] + mID, 'name': mN }
-        })
-        fetch('http://127.0.0.1:5000/add/user/conversation', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'id': user['_id'],
-                'name': user['name'],
-                'convoID': user['_id'] + mID,
-                'messageUserID': mID,
-                'messageUserName': mN
-            })
-        })
-        .catch(err => {
-            console.error(err)
-        })
-    }
-
     if (messageUserID === '') {
         return (
-            <div className='MessageComponent'>
-                <MessageBar setMessageUserID={setMessageUserID} usersConvos={usersConvo} selectedConvo={messageUserID} />
-            </div>
+            <>
+                <Header showSearch={false} />
+                <div className='MessageComponent'>
+                    <MessageBar setMessageUserID={setMessageUserID} usersConvos={usersConvo} setUsersConvo={setUsersConvo}/>
+                </div>
+            </>
         )
     } else {
         return (
-            <div className='MessageComponent'>
-                <MessagePage user={user} usersConvo={usersConvo} messageUserID={mID} setMessageUserID={setMessageUserID} statePass={messageUserID} />
-            </div>
+            <>
+                <Header showSearch={false} />
+                <div className='MessageComponent'>
+                    <MessagePage user={user} usersConvo={usersConvo} messageUserID={mID} setMessageUserID={setMessageUserID} statePass={messageUserID} setUsersConvo={setUsersConvo} />
+                </div>
+            </>
         )
     }
 }

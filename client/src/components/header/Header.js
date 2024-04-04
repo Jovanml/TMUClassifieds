@@ -17,7 +17,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { logOut } from '../../services/auth';
 
-const Header = () => {
+const Header = ({showSearch}) => {
   const { state } = useContext(GlobalContext);
   const mobileBreakpoint = '(max-width: 640px)'
   const isMobile = useMediaQuery(mobileBreakpoint);
@@ -100,7 +100,7 @@ const Header = () => {
       <Link to={'/'} className='logo'>
         <img src={logo} className='logoIcon w-full h-full' alt='logo'/>
       </Link>
-      {!isMobile && (
+      {!isMobile && showSearch && (
         <div className='search-bar'>
           <img src={searchIcon} alt='search' />
           <div>
@@ -122,7 +122,7 @@ const Header = () => {
         </div>
       )}
       <div className='header-btns'>
-        {isMobile && (
+        {isMobile && showSearch && (
           <button 
             className='btn-circle' 
             onClick={() => {
@@ -133,7 +133,7 @@ const Header = () => {
           </button>
         )}
         <button className='btn-circle'>
-          <ChatBubbleOvalLeftIcon className='w-9 h-9'/>
+                  <ChatBubbleOvalLeftIcon className='w-9 h-9' onClick={() => navigate('/message')} />
         </button>
         <button className='btn-circle' onClick={() => navigate('/new-listing')}>
           <PlusCircleIcon className='w-9 h-9' />

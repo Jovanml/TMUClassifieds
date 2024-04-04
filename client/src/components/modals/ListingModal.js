@@ -42,7 +42,7 @@ const ListingModal = ({postInfo}) => {
     <Modal 
       isOpen={listingModal.isOpen}
       actionLabel={'Message'}
-      actionLink={'/chat'} // TODO - make this align with the message page route
+      actionLink={'/message?messageUser=' + postInfo.id + '&messageUsername=' + postInfo.owner} // TODO - make this align with the message page route
       onClose={listingModal.onClose}
       onSubmit={listingModal.onClose}
       body={bodyContent}

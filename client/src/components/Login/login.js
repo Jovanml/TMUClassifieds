@@ -27,9 +27,9 @@ function Login() {
         <section className='login-card'>
           <h2 className='login-title'>Sign In</h2>
           <div>
-            <div className="google-login">
+            <div onClick={logIn} className="google-login">
               <img src={googleLogo} alt="Google logo" className="google-logo" />
-              <span onClick={logIn}>Continue with Google</span>
+              <span >Continue with Google</span>
             </div>
           </div>
         </section>

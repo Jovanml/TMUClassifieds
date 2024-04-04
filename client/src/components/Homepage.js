@@ -69,7 +69,7 @@ const Homepage = () => {
     fetchData();
   }, [location.search]);
 
-  const handleOnClick = ({title, price, location, description, imgSrc, owner}) => {
+  const handleOnClick = ({title, price, location, description, imgSrc, owner, id}) => {
     listingModal.onOpen();
     setPostInfo({
       'title': title,
@@ -78,6 +78,7 @@ const Homepage = () => {
       'description': description,
       'imgSrc': imgSrc,
       'owner': owner,
+      'id': id
     })
   };
 
@@ -86,7 +87,7 @@ const Homepage = () => {
       <ListingModal postInfo={postInfo}/>
       <FilterModal />
       <div id='header-bar'>
-        <Header />
+        <Header showSearch={true}/>
         <div className='params-container'>
           <Categories />
           <div className='filter-btn-container'>
@@ -113,6 +114,7 @@ const Homepage = () => {
                 description: post.description, 
                 imgSrc: post.picture, 
                 owner: post.owner,
+                id: post.ownerID
               })
             }}
           />
