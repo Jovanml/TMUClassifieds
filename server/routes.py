@@ -293,6 +293,7 @@ def getData():
             get = {"name": 1}
             collection = db["Users"]
             userData = collection.find_one(query, get)
+            row["ownerID"] = str(row["owner"])
             row["owner"] = userData["name"]
             returnData.append(row)
         if not results:
