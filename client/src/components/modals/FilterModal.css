@@ -48,6 +48,10 @@
   outline: none;
 }
 
+.filter-price-slider {
+  padding: 1rem;
+}
+
 .filter-price-input-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

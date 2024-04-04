@@ -123,7 +123,8 @@ const FilterModal = () => {
                 },
               }}
             />
-            <div className='filter-price-input-container'>
+          </div>
+          <div className='filter-price-input-container'>
               <div className='filter-price-input'>
                 <input
                   className='price-input'
@@ -151,7 +152,6 @@ const FilterModal = () => {
                 />
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
