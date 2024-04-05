@@ -18,7 +18,7 @@ import { useLocation } from 'react-router-dom'
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 //import header
-import Header from '../header/Header'
+import Header from '../Header/Header'
 
 function MessageController() {
 
