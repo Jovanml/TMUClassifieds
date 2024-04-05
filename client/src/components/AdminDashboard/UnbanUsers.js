@@ -41,7 +41,7 @@ const UnbanUsers = () => {
             users.map((user, i) => {
                 return (
                     <Box key={i} display='flex' justifyContent='space-between' alignItems='center'>
-                        <Typography variant='body2'>{user.name}</Typography>
+                        <Typography variant='body2'>{user.email}</Typography>
                         <Button onClick={() => handleUnbanUser(user._id)}>Unban</Button>
                     </Box>
                 )

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import {Typography, Card, CardContent, Divider, Button } from '@mui/material';
 import { AccountCircle, Delete } from '@mui/icons-material';
-import Header from '../header/Header';
+import Header from '../Header/Header';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { Navigate } from 'react-router';
 import Modal from 'react-modal'
@@ -24,7 +24,7 @@ const customStyles = {
   },
 };
 
-function SquareCard() {
+function AdminDashboard() {
   const { state } = useContext(GlobalContext);
   const [modalType, setModalType] = useState(null);
   const [open, setOpen] = useState(false);
@@ -95,4 +95,4 @@ function SquareCard() {
   );
 }
 
-export default SquareCard;
+export default AdminDashboard;

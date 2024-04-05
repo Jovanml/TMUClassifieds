@@ -3,7 +3,7 @@ import useListingModal from "../../hooks/useListingModal";
 
 // Components
 import Modal from "./Modal";
-import Heading from "../Heading";
+import Heading from "../Heading/Heading";
 
 // Icons 
 import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';

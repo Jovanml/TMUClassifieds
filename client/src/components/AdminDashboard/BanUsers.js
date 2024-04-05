@@ -40,7 +40,7 @@ const BanUsers = () => {
             users.map((user, i) => {
                 return (
                     <Box key={i} display='flex' justifyContent='space-between' alignItems='center'>
-                        <Typography variant='body2'>{user.name}</Typography>
+                        <Typography variant='body2'>{user.email}</Typography>
                         <Button onClick={() => handleBanUser(user._id)}>Ban</Button>
                     </Box>
                 )

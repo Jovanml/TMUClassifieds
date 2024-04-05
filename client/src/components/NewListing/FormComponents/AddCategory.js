@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import { categories } from '../../categories/Categories';
+import { categories } from '../../Categories/Categories';
 
 const AddCategory = ({ category, setCategory, setIsValueInput }) => {
     const handleClick = (label) => {

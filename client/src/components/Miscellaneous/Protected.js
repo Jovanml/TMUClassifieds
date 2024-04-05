@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from '../contexts/GlobalContext'
+import { GlobalContext } from '../../contexts/GlobalContext'
 import { Navigate } from 'react-router'
 
 const Protected = ({ children }) => {
@@ -15,4 +15,4 @@ const Protected = ({ children }) => {
     : <Navigate to="/login"/>
 }
 
-export default Protected
+export default Protected;

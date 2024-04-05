@@ -5,7 +5,7 @@ import { AddCategory, AddPhoto, AddTitle, AddDescription, AddPrice, AddLoc} from
 import { useNavigate } from 'react-router-dom';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { addPost } from '../../services/posts';
-import Header from '../header/Header'
+import Header from '../Header/Header'
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 const NewListing = () => {

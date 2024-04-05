@@ -1,29 +1,27 @@
 // Packages
 import { useContext, useEffect, useState } from "react";
-import axios from 'axios';
 import { Navigate, useLocation } from "react-router-dom";
+import { axiosInstance } from "../../utils/axios";
 
 // Hooks
-import useListingModal from "../hooks/useListingModal";
-import useFilterModal from "../hooks/useFilterModal";
+import useListingModal from "../../hooks/useListingModal";
+import useFilterModal from "../../hooks/useFilterModal";
 
 // Components
-import Header from "./header/Header";
-import Categories from "./categories/Categories";
-import ListingCard from "./listings/ListingCard";
-import ListingModal from "./modals/ListingModal";
-import Button from "./buttons/Button";
-import FilterModal from "./modals/FilterModal";
+import Header from "../Header/Header";
+import Categories from "../Categories/Categories";
+import ListingCard from "../Listings/ListingCard";
+import ListingModal from "../Modals/ListingModal";
+
+import FilterModal from "../Modals/FilterModal";
+import Button from "../buttons/Button";
 
 // Icons
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 // Styles
 import './Homepage.css';
-import { GlobalContext } from "../contexts/GlobalContext";
-
-
-
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 const Homepage = () => {
   const listingModal = useListingModal();
@@ -33,7 +31,6 @@ const Homepage = () => {
 
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
-  const [tempHeader, setTempHeader] = useState(false);
 
   const { state } = useContext(GlobalContext);
   
@@ -47,11 +44,9 @@ const Homepage = () => {
       if (window.scrollY > sticky) {
         header?.classList.add('header-sticky');
         listingContainer?.classList.add('listing-cards-container-sticky');
-        setTempHeader(true);
       } else {
         header?.classList.remove('header-sticky');
         listingContainer?.classList.remove('listing-cards-container-sticky');
-        setTempHeader(false);
       }
     }
     
@@ -61,7 +56,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchData = async() => {
       try {
-        await axios.get(`http://127.0.0.1:5000/get/posts${location.search}`)
+        await axiosInstance.get(`get/posts${location.search}`)
           .then(response => {
             if (response.status === 200) {
               setPosts(response.data);
