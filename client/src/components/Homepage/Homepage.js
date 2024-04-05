@@ -14,7 +14,7 @@ import ListingCard from "../Listings/ListingCard";
 import ListingModal from "../Modals/ListingModal";
 
 import FilterModal from "../Modals/FilterModal";
-import Button from "../buttons/Button";
+import Button from "../Buttons/Button";
 
 // Icons
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";

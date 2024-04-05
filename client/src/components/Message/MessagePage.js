@@ -57,7 +57,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
 
     useEffect(() =>{
       async function getUserList(){
-        fetch('http://127.0.0.1:5000/get/users?id=' + user['_id'], {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/get/users?id=` + user['_id'], {
           method: 'GET'
         })
         .then(response => {
@@ -80,7 +80,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
 
     useEffect(() => {
       async function fetchData(){
-        fetch('http://127.0.0.1:5000/get/messages?limit=25&id=' + messageDBID, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/get/messages?limit=25&id=` + messageDBID, {
           method: 'GET'
         })
         .then(response => {
@@ -106,7 +106,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
 
     const sendMessage = async (e) => {
       async function postData(){
-        fetch('http://127.0.0.1:5000/post/messages', {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/post/messages`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

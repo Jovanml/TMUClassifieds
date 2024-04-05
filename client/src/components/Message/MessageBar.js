@@ -1,6 +1,5 @@
 import './Style/MessageBar.css'
 import MessageBarUser from './MessageBarUser'
-import addChat from '../../assets/addChat.svg'
 import { PencilSquareIcon } from '@heroicons/react/24/solid';
 
 function MessageBar(props){

@@ -34,7 +34,7 @@ function MessageController() {
 
     useEffect(() => {
         async function fetchConvos() {
-            fetch('http://127.0.0.1:5000/get/user?id=' + user['_id'] + '&field=conversations', {
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/get/user?id=` + user['_id'] + '&field=conversations', {
                 method: 'GET'
             }).then(response => {
                 if (response.status === 200) {
@@ -44,7 +44,7 @@ function MessageController() {
                                 ...usersConvo,
                                 [mID]: { 'id': user['_id'] + mID, 'name': mN }
                             })
-                            fetch('http://127.0.0.1:5000/add/user/conversation', {
+                            fetch(`${process.env.REACT_APP_BACKEND_URL}/add/user/conversation`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json'

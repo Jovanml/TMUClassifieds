@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 // Components
-import Button from "../buttons/Button";
+import Button from "../Buttons/Button";
 import { Link } from "react-router-dom";
 
 // Icons
