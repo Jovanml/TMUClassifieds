@@ -1,14 +1,22 @@
+//Hooks
 import React, { useEffect, useState } from 'react';
+
+//HTML Components
 import { Box, Button, Typography } from '@mui/material';
+
+//axios api endpoint
 import { axiosInstance } from '../../utils/axios';
 
 const BanUsers = () => {
+    //list of users
     const [users, setUsers] = useState([]);
 
+    //fetches list of users on first render
     useEffect(() => {
        fetchUsers();
     }, [])
 
+    //gets all users who arent currently banned
     const fetchUsers = async () => {
         try {
             const response = await axiosInstance.get('/get/all/users?banned=false');
@@ -25,6 +33,7 @@ const BanUsers = () => {
         }
     }
 
+    //bans a selected user
     const handleBanUser = async (userId) => {
         try {
             await axiosInstance.put('/ban/user', { id: userId })

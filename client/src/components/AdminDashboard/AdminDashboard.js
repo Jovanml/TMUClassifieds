@@ -1,14 +1,25 @@
+//Hooks
 import React, { useContext, useState } from 'react';
+
+//HTML Components
 import {Typography, Card, CardContent, Divider, Button } from '@mui/material';
 import { AccountCircle, Delete } from '@mui/icons-material';
-import Header from '../Header/Header';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import { Navigate } from 'react-router';
 import Modal from 'react-modal'
+
+//Components
+import Header from '../Header/Header';
 import BanUsers from './BanUsers';
 import UnbanUsers from './UnbanUsers';
 import DeletePosts from './DeletePosts';
 
+//Global Context
+import { GlobalContext } from '../../contexts/GlobalContext';
+
+//Router Navigation
+import { Navigate } from 'react-router';
+
+
+//modal style
 const customStyles = {
   content: {
     top: '50%',
@@ -25,25 +36,34 @@ const customStyles = {
 };
 
 function AdminDashboard() {
+  //Global Context
   const { state } = useContext(GlobalContext);
+
+  //Type of modal
   const [modalType, setModalType] = useState(null);
+
+  //is modal open or not
   const [open, setOpen] = useState(false);
 
+  //handles opening of modal
   const openModal = (type) => {
     setModalType(type);
     setOpen(true);
   }
 
+  //handles closing of modal
   const closeModal = () => {
     setOpen(false);
   }
 
+  //different types of modal and html component to render when selected
   const modalContent = {
     'ban': <BanUsers />,
     'unban': <UnbanUsers />,
     'delete-post': <DeletePosts />
   }
 
+  //navigation depending on if admin or not
   if (state.user.admin !== "true") return <Navigate to="/"/>;
 
   return (

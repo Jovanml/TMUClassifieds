@@ -1,14 +1,22 @@
+//Hooks
 import React, { useState, useEffect } from 'react';
+
+//HTML Components
 import { Box, Button, Typography } from '@mui/material';
+
+//axios api endpoint
 import { axiosInstance } from '../../utils/axios';
 
 const DeletePosts = () => {
+    //list of posts
     const [posts, setPosts] = useState([]);
 
+    //fetches posts on first render
     useEffect(() => {
         fetchPosts();
     }, [])
 
+    //fetches a list of all posts from the db
     const fetchPosts = async () => {
         try {
           const response = await axiosInstance.get('/get/posts');
@@ -18,6 +26,7 @@ const DeletePosts = () => {
         }
     }
 
+    //deletes specific post from the db
     const handleDeletePost = async (postId) => {
         try {
             await axiosInstance.delete(`/delete/posts/${postId}`)
