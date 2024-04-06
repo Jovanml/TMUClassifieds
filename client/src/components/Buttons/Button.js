@@ -1,8 +1,9 @@
 // Styles
 import './Button.css';
 
+// reusable button component
 const Button = ({
-  className,
+  className, // string
   label, // string
   onClick, // e => void
   disabled, // boolean

@@ -1,6 +1,7 @@
 // Styles
 import './Heading.css';
 
+// reusable heading component for the modals
 const Heading = ({
   title, // string
   subtitle, // string

@@ -1,7 +1,11 @@
 // Packages
 import { useMediaQuery } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+
+// Contexts + Hooks
+import { GlobalContext } from '../../contexts/GlobalContext';
+import { logOut } from '../../services/auth';
 
 // Icons
 import logo from '../../assets/logo.svg';
@@ -13,33 +17,40 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 // Styles
 import './Header.css';
 
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../contexts/GlobalContext';
-import { logOut } from '../../services/auth';
-
+// reusable header component
 const Header = ({showSearch, showChat=true, showNew=true, showHomepage=true}) => {
+  // grab state of user
   const { state } = useContext(GlobalContext);
+
+  // mobile breakpoint for responsive design
   const mobileBreakpoint = '(max-width: 640px)'
   const isMobile = useMediaQuery(mobileBreakpoint);
   
+  // grab query params from url
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
 
+  // store state of mobile menu
   const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  
+  // store search input
   const [searchInput, setSearchInput] = useState(queryParams.get('search') || '');
 
+  // toggle mobile menu
   const toggleMenuOpen = useCallback(() => {
     setMenuIsOpen(value => !value);
   }, [])
 
+  // set query params when user searches
   const onSearchClick = () => {
     queryParams.set('search', searchInput);
     const newSearch = `?${queryParams.toString()}`;
     navigate({ search : newSearch });
   }
 
+  // add option to press enter to search
   const enterPress = () => {
     let key = window.event.keyCode;
     if (key === 13) {
@@ -61,6 +72,7 @@ const Header = ({showSearch, showChat=true, showNew=true, showHomepage=true}) =>
     
   }, [])
 
+  // mobile search page
   const mobileSearch = (
     <>
       <button 
@@ -94,6 +106,7 @@ const Header = ({showSearch, showChat=true, showNew=true, showHomepage=true}) =>
     </>
   )
 
+  // render the mobile search if the mobile search button is clicked
   if (mobileSearchClicked) {
     return (
       <header className='header-mobile'>
