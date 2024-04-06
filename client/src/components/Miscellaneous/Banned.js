@@ -1,4 +1,7 @@
+//Hooks
 import React from 'react';
+
+//HTML Components
 import { Box, Typography } from '@mui/material';
 
 const Banned = () => {
