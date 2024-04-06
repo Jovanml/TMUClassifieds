@@ -1,10 +1,12 @@
 import React, { createContext, useReducer } from 'react';
 
+//initiale state
 const initialState = {
     isLoggedIn: null,
     user: null
 }
 
+//Reducer to update state
 const Reducer = (state, action) => {
     switch(action.type) {
         case 'LOG_IN':
@@ -24,8 +26,10 @@ const Reducer = (state, action) => {
     }
 }
 
+//create Global Context
 export const GlobalContext = createContext(initialState);
 
+//Render child components under the Global Context Provider
 export const GlobalContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(Reducer, initialState);
     
