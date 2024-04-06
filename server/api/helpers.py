@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, auth
 import os
 
+#firebase credentials
 cred = credentials.Certificate({
     "type": os.getenv("FIREBASE_ACCOUNT_TYPE"),
     "project_id": os.getenv("FIREBASE_PROJECT_ID"),
@@ -15,8 +16,10 @@ cred = credentials.Certificate({
     "client_x509_cert_url": os.getenv("FIREBASE_CLIENT_CERT_URL"),
     "universe_domain": os.getenv("FIREBASE_UNIVERSE_DOMAIN"),
 })
+#initirlize firebase app
 firebase_admin.initialize_app(cred)
 
+#verify token passed during login
 def verify_id_token(token):
     try:
         decoded_token = auth.verify_id_token(token)
