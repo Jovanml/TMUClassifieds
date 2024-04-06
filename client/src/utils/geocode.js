@@ -1,3 +1,4 @@
+//default settings for google google maps api
 const geocodeDefaults = {
     key: process.env.REACT_APP_GEO_API_KEY,
     language: "en",
