@@ -14,6 +14,7 @@ import googleLogo from '../../assets/google.png';
 import './login.css'; 
 
 function Login() {
+  //global context
   const { state } = useContext(GlobalContext);
 
   if (state.isLoggedIn == null) return <></>;
