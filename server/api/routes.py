@@ -10,27 +10,33 @@ from flask_socketio import SocketIO,emit
 import datetime
 import os
 from dotenv import load_dotenv
-from .helpers import verify_id_token
+from helpers import verify_id_token
 import json
 
 #how to start the app
 #flask --app routes --debug run
-#link to download the json of the postman requests i used
-#https://api.postman.com/collections/33183912-40bc2e75-e994-4456-bf30-897602d92c7e?access_key=PMAT-01HSVFHWMKWW82JA8KB0NMECA9
+
+#create flask app and configure it
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = 'secret!'
+#mongodb endpoint
 uri = f'mongodb+srv://theowilson2014:{os.getenv("MONGODB_PASSWORD")}@{os.getenv("MONGODB_ADDRESS")}/?retryWrites=true&w=majority&appName={os.getenv("Cluster0Test")}'
+#create socket.io
 socketio = SocketIO(app, cors_allowed_origins="*")
 load_dotenv()
 
+#run the socket.io app
 if __name__ == '__main__':
     socketio.run(app)
 
 ##################################################
 #Users Users
 ##################################################
+
+#get function that returns all users name and id accept the user in the url query params
+#returns 204 is no data found
 @app.get("/get/users")
 def getAllUsers():
     userID = request.args.get('id')
@@ -54,6 +60,9 @@ def getAllUsers():
         print(e)
         return "Error while processing your request", 500
 
+#get function that returns a user object
+#can otionally only return only part of the user object if specified in the url query params
+#returns 204 is no data found
 @app.get("/get/user")
 def getUserData():
     field = None
@@ -85,6 +94,8 @@ def getUserData():
         print(e)
         return "Error while processing your request", 500
 
+#get function that returns and array of all the posts a user has either posted themselves or bought
+#returns 204 is no data found
 @app.get("/get/user/posts")
 def getUserPostsData():
     allowedFields = ["bought", "posts"]
@@ -123,6 +134,9 @@ def getUserPostsData():
         print(e)
         return "Error while processing your request", 500
 
+#get function that returns an array of all user objects
+#this function accepts a url query param to see if they user is banned or not to be used in the admin dashboard
+#returns 204 is no data found
 @app.get("/get/all/users")
 def getAllUsersBanned():
     banned = request.args.get('banned')
@@ -144,6 +158,7 @@ def getAllUsersBanned():
         print(e)
         return "Error while processing your request", 500
 
+#post function that adds a new user to the db
 @app.post("/create/user")
 def createUser():
     formData = request.form
@@ -157,7 +172,8 @@ def createUser():
     except Exception as e:
         print(e)
         return e, 500
-    
+
+#put function that updates a user based on the fields specified in the json body of the request
 @app.put("/update/user")
 def updateUserData():
     jsonData = request.json
@@ -177,7 +193,9 @@ def updateUserData():
     except Exception as e:
         print(e)
         return e, 500
-    
+
+#put function that bans a requested user
+#all user posts will also be banned(will not be displayed)
 @app.put("/ban/user")
 def banUser():
     jsonData = request.json
@@ -197,6 +215,8 @@ def banUser():
         print(e)
         return e, 500
 
+#put function that unbans a user
+#all user posts will also be unbanned(will be displayed again)
 @app.put("/unban/user")
 def unbanUser():
     jsonData = request.json
@@ -216,6 +236,7 @@ def unbanUser():
         print(e)
         return e, 500
 
+#put function that adds a new conversation to the user
 @app.put("/add/user/conversation")
 def addUserConvo():
     jsonData = request.json
@@ -239,6 +260,7 @@ def addUserConvo():
         print(e)
         return e, 500
 
+#put function that adds a new post to the user object when they create a new post
 @app.put("/update/user/posts")
 def updateUserPostsData():
     jsonData = request.json
@@ -260,6 +282,7 @@ def updateUserPostsData():
         print(e)
         return e, 500
 
+#delete function that deletes a user from the db
 @app.delete("/delete/user/<id>")
 def deleteUser(id):
     query = {"_id": ObjectId(id)}
@@ -277,6 +300,9 @@ def deleteUser(id):
 #Users Posts
 ##################################################
 
+#get function that returns and array of all post objects
+#the get function can be filtered based on url query parameters passed
+#will always ignore banned or bought posts
 @app.get("/get/posts")
 def getData():
     #limit = int(request.args.get('limit'))
@@ -288,11 +314,11 @@ def getData():
     category = request.args.get('category')
     returnData = []
     query = {"bought": "false", "banned": "false"}
-    if location is not None:
+    if location is not None and location != '':
         query["location"] = location
-    if category is not None:
+    if category is not None and category != '':
         query["type"] = category
-    if search is not None:
+    if search is not None and search != '':
         query["$or"] = [{'title':  {'$regex': f'{search}'}}, {'description':  {'$regex': f'{search}'}}]
     if priceLess is not None and priceMore is None:
         query["price"] = {"$lte": float(priceLess)}
@@ -324,6 +350,7 @@ def getData():
         print(e)
         return e, 500
 
+#post function that creates a post object
 @app.post("/create/posts")
 def createData():
     formData = request.form
@@ -343,14 +370,8 @@ def createData():
         print(e)
         return e, 500
 
-#test endpoint for file fields
-@app.post("/temp/picture/test")
-def testPic():
-    id = request.form['id']
-    file = request.files['file']
-    print(file.mimetype)
-    return 'a', 200
-    
+#put function that updates a post object
+#the fields updated can be specified in the json body of the request    
 @app.put("/update/posts")
 def updateData():
     jsonData = request.json
@@ -369,7 +390,8 @@ def updateData():
     except Exception as e:
         print(e)
         return e, 500
-    
+
+#put functin to ban a post   
 @app.put("/ban/posts")
 def banPost():
     jsonData = request.json
@@ -385,6 +407,7 @@ def banPost():
         print(e)
         return e, 500
 
+#put functin to unban a post   
 @app.put("/unban/posts")
 def unbanPost():
     jsonData = request.json
@@ -399,7 +422,8 @@ def unbanPost():
     except Exception as e:
         print(e)
         return e, 500
-    
+
+#put function to mark a post as bought and update the user object who bought the post    
 @app.put("/bought/posts")
 def boughtPost():
     jsonData = request.json
@@ -421,6 +445,7 @@ def boughtPost():
         print(e)
         return e, 500
 
+#delete function to delete a post
 @app.delete("/delete/posts/<id>")
 def deleteData(id):
     query = {"_id": ObjectId(id)}
@@ -443,6 +468,8 @@ def deleteData(id):
 ##################################################
 #Messages calls
 ##################################################
+
+#get function that returns an array of all messages for the current conversation
 @app.get("/get/messages")
 def getMessages():
     limit = int(request.args.get('limit'))
@@ -468,6 +495,7 @@ def getMessages():
         print(e)
         return e, 500
 
+#post function that adds a post to the conversation db
 @app.post("/post/messages")
 def postMessage():
     formData = request.form
@@ -484,6 +512,11 @@ def postMessage():
         print(e)
         return e, 500
 
+##################################################
+#Login
+##################################################
+
+#post function that validates a users tokens to log them in
 @app.post("/login")
 def login():
     data = request.json
@@ -526,11 +559,14 @@ chatrooms = {}
 ##################################################
 #socket listeners
 ##################################################
+
+#on socket connect
 @socketio.on("connect")
 def connected():
     print(request.sid)
     print("client has connected")
 
+#when user specifies which chat they are viewing adds them to the chotroom object for messaging
 @socketio.on("chatRoom")
 def chatroom(data):
     convoID = data['convoID']
@@ -542,6 +578,7 @@ def chatroom(data):
             chatrooms[convoID].append(request.sid)
     print(chatrooms)
 
+#when user sends a message emit it to the other user if they are in the chatroom
 @socketio.on("message")
 def chatroom(data):
     convoID = data['convoID']
@@ -549,10 +586,12 @@ def chatroom(data):
         if user != request.sid:
             emit('message', data, room=user)
 
+#handle an error with socket.io
 @socketio.on_error_default
 def chat_error_handler(e):
     print('An error has occurred: ' + str(e))
 
+#remove user from chatroom object when they disconnect
 @socketio.on("disconnect")
 def disconnected():
     print("user disconnected")
