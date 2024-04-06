@@ -23,7 +23,7 @@ const AddTitle = ({ title, setTitle, setIsValueInput }) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Typography variant='h5'>Let's give your item a title</Typography>
-            <Typography variant='h6'>Have fun with it - shor titles work best but you can always change it later.</Typography>
+            <Typography variant='h6'>Have fun with it - short titles work best but you can always change it later.</Typography>
             <Box mt='20px'>
                 <TextField
                     multiline

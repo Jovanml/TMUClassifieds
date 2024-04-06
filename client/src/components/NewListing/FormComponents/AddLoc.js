@@ -50,7 +50,7 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <Typography variant='h5'>Enter you location here</Typography>
+            <Typography variant='h5'>Enter your location here</Typography>
             <Typography variant='h6'>If you block the site from knowing your location please input manually.</Typography>
             <Box mt='20px'>
                 <TextField
