@@ -1,10 +1,18 @@
+//Hooks
 import React, { useState, useEffect } from 'react';
+
+//HTML Components
 import { Box, Typography, TextField } from '@mui/material';
 
 const AddDescription = ({ description, setDescription, setIsValueInput }) => {
+
+    //current number of characters in input
     const [numChars, setNumChars] = useState(0);
+
+    //max number of characters in input
     const MAXCHARS = 500;
 
+    //check if input valid whenver it is updated
     useEffect(() => {
         if (description.length === 0){
             setIsValueInput(false);
@@ -14,7 +22,8 @@ const AddDescription = ({ description, setDescription, setIsValueInput }) => {
 
         setNumChars(description.length);
     }, [description, setIsValueInput])
-    
+
+    //handle user updating input
     const handleOnChange =(e) => {
         if (e.target.value.length > MAXCHARS) return;
         setDescription(e.target.value);

@@ -1,25 +1,58 @@
+//Hooks
 import React, { useContext, useState } from 'react';
+
+//HTML Elements
 import { Box, Container, Button } from '@mui/material'
+
+//Components
 import ProgressBar from './ProgressBar';
-import { AddCategory, AddPhoto, AddTitle, AddDescription, AddPrice, AddLoc} from './FormComponents';
-import { useNavigate } from 'react-router-dom';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { addPost } from '../../services/posts';
+import { AddCategory, AddPhoto, AddTitle, AddDescription, AddPrice, AddLoc } from './FormComponents';
 import Header from '../Header/Header'
+
+//Router
+import { useNavigate } from 'react-router-dom';
+
+//Firebase
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+//Service
+import { addPost } from '../../services/posts';
+
+//Global context
 import { GlobalContext } from '../../contexts/GlobalContext';
 
 const NewListing = () => {
+    //current step number
     const [currentStep, setCurrentStep] = useState(0);
+
+    //currently selected category
     const [category, setCategory] = useState('');
+
+    //currently selected file
     const [selectedFile, setSelectedFile] = useState(null);
+
+    //current title
     const [title, setTitle] = useState('');
+
+    //current description
     const [description, setDescription] = useState('');
+
+    //current price
     const [price, setPrice] = useState(0);
+
+    //check if input is valid for text input
     const [isValidInput, setIsValueInput] = useState(false);
+
+    //current loc
     const [loc, setLoc] = useState('')
 
+    //naviagte in the router
     const navigate = useNavigate();
+
+    //global context state
     const { state } = useContext(GlobalContext);
+
+    //steps
     const formComponents = {
         0: <AddCategory category={category} setCategory={setCategory} setIsValueInput={setIsValueInput}/>,
         1: <AddPhoto selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>,
@@ -29,10 +62,12 @@ const NewListing = () => {
         5: <AddPrice price={price} setPrice={setPrice}/>
     }
 
+    //move on to next step
     const nextStep = () => {
         setCurrentStep(curr => curr + 1);
     }
 
+    //go back to previous step
     const prevStep = () => {
         if (currentStep === 0) {
             return navigate("/");
@@ -40,9 +75,12 @@ const NewListing = () => {
 
         setCurrentStep(curr => curr - 1);
     }
-    
+
+    //firebase storage
     const storage = getStorage();
 
+    //handles submitting a post to the db
+    //also upload image to firebase firestore and returns url for db
     const handleSubmit = async () => {
         let fileUrl = '';
         if (selectedFile) {

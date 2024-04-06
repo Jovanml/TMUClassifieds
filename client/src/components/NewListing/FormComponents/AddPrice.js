@@ -1,17 +1,23 @@
 import React from 'react';
+
+//HTML Components
 import { Box, Typography, Button, TextField } from '@mui/material';
 
 const AddPrice = ({ price, setPrice }) => {
+
+    //use regex to check if input is valid
     function isValidInput(str) {
         return /^([0](\.|\.\d{1,2})?|[1-9]\d*(\.|\.\d{1,2})?)$/.test(str);
     }
-    
+
+    //handles change of input
     const handleOnChange = (e) => {
         if (isValidInput(e.target.value) || e.target.value === ''){
             setPrice(e.target.value);
         }
     }
 
+    //handles increasing the input
     const handleIncrement = (e) => {
         setPrice((price) => {
             if (price === '') return 1;
@@ -19,6 +25,7 @@ const AddPrice = ({ price, setPrice }) => {
         });
     }
 
+    //handles decreasing the input
     const handleDecrement = (e) => {
         setPrice((price) => {
             if (price === '' || (Number(price) - 1) < 0 ) return 0;

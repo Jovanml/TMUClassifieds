@@ -1,12 +1,22 @@
+//Hooks
 import React, { useEffect, useState } from 'react';
+
+//HTML Components
 import { Box, Typography, TextField } from '@mui/material';
+
+//GeoLocation
 import { setDefaults, fromLatLng, setLocationType } from "react-geocode";
 import geocodeDefaults from '../../../utils/geocode'
 
 const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
+
+    //current number of characters in input
     const [numChars, setNumChars] = useState(0);
+
+    //max number of characters in input
     const MAXCHARS = 30;
 
+    //finds city based on lat long
     async function showPosition(position) {
         setDefaults(geocodeDefaults)
         setLocationType("ROOFTOP");
@@ -24,6 +34,7 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
             .catch(console.error);
     }
 
+    //checks is geolocation is possible
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -32,6 +43,7 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    //check if input valid whenver it is updated
     useEffect(() => {
         if (loc.length === 0){
             setIsValueInput(false);
@@ -42,7 +54,8 @@ const AddLoc = ({ loc, setLoc, setIsValueInput }) => {
         setNumChars(loc.length);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loc, setIsValueInput])
-    
+
+    //handle user updating input
     const onChange = (e) => {
         if (e.target.value.length > MAXCHARS) return;
         setLoc(e.target.value);

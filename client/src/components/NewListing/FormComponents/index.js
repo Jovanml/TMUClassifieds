@@ -1,3 +1,5 @@
+//Export all components in one file
+
 export { default as AddCategory } from './AddCategory.js';
 export { default as AddDescription } from './AddDescription.js';
 export { default as AddPhoto } from './AddPhoto.js';

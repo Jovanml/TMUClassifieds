@@ -1,4 +1,6 @@
 import React from 'react';
+
+//HTML Elements
 import { Box } from '@mui/material';
 
 const ProgressBar = ({ steps, current }) => {

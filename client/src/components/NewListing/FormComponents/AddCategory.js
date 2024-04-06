@@ -1,12 +1,20 @@
+//Hooks
 import React, { useEffect } from 'react';
+
+//HTML Components
 import { Box, Typography } from '@mui/material';
+
+//Categories
 import { categories } from '../../Categories/Categories';
 
 const AddCategory = ({ category, setCategory, setIsValueInput }) => {
+
+    //set category
     const handleClick = (label) => {
         setCategory(label);
     }
-    
+
+    //check if user selected a category
     useEffect(() => {
         if (category.length === 0){
             setIsValueInput(false);
@@ -14,6 +22,7 @@ const AddCategory = ({ category, setCategory, setIsValueInput }) => {
             setIsValueInput(true);
         }
     }, [category, setIsValueInput])
+
     return (
         <Box display='flex' flexDirection='column' alignItems='center'>
             <Typography variant='h5'>Which of these best describe your item?</Typography>

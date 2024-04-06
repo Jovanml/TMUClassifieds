@@ -1,26 +1,37 @@
+//Hooks
 import React, { useState, useRef } from 'react';
+
+//HTML Components
 import { Box, Typography, Input } from '@mui/material';
 import CollectionsIcon from '@mui/icons-material/Collections';
 
 const AddPhoto = ({ selectedFile, setSelectedFile }) => {
+
+    //set dragging
     const [dragging, setDragging] = useState(false);
+
+    //file input
     const fileInputRef = useRef(null);
 
+    //set dragging true
     const handleDragEnter = (e) => {
         e.preventDefault();
         setDragging(true);
     };
 
+    //set dragging false
     const handleDragLeave = (e) => {
         e.preventDefault();
         setDragging(false);
     };
 
+    //set dragging true
     const handleDragOver = (e) => {
         e.preventDefault();
         setDragging(true);
     };
 
+    //handle when a file is dropped
     const handleDrop = (e) => {
         e.preventDefault();
         setDragging(false);
@@ -31,10 +42,12 @@ const AddPhoto = ({ selectedFile, setSelectedFile }) => {
         }
     };
 
+    //update file if changed
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
 
+    //sets file input on click
     const handleTextClick = () => {
         fileInputRef.current.click();   
     };
