@@ -8,6 +8,7 @@ import { DocumentMagnifyingGlassIcon, ShoppingCartIcon, AcademicCapIcon } from '
 // Styles
 import './Categories.css';
 
+// categories object
 export const categories = [
   {
     label: 'Items Wanted',
@@ -26,6 +27,7 @@ export const categories = [
   }
 ]
 
+// render the categories
 const Categories = () => {
   return ( 
     <div className='categories-container'>

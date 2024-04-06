@@ -7,6 +7,9 @@ import { axiosInstance } from "../../utils/axios";
 import useListingModal from "../../hooks/useListingModal";
 import useFilterModal from "../../hooks/useFilterModal";
 
+// Contexts
+import { GlobalContext } from "../../contexts/GlobalContext";
+
 // Components
 import Header from "../Header/Header";
 import Categories from "../Categories/Categories";
@@ -21,21 +24,25 @@ import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 // Styles
 import './Homepage.css';
-import { GlobalContext } from "../../contexts/GlobalContext";
 
 const Homepage = () => {
+  // get the modal stores which store the states of the modal
   const listingModal = useListingModal();
   const filterModal = useFilterModal();
 
+  // get the url query params
   const location = useLocation();
 
+  // store the posts when fetching data
   const [posts, setPosts] = useState([]);
   const [postInfo, setPostInfo] = useState({});
 
+  // user state
   const { state } = useContext(GlobalContext);
   
 
   useEffect(() => {
+    // on scroll function handler for sticky header
     function handleOnScroll() {
       const header = document.getElementById('header-bar');
       const listingContainer = document.getElementById('listing-card-container');
@@ -54,6 +61,7 @@ const Homepage = () => {
   }, []);
 
   useEffect(() => {
+    // fetch data from backend based on query params
     const fetchData = async() => {
       try {
         await axiosInstance.get(`get/posts${location.search}`)
@@ -73,6 +81,7 @@ const Homepage = () => {
     fetchData();
   }, [location.search]);
 
+  // store the post data to display in the listing modal
   const handleOnClick = ({title, price, location, description, imgSrc, owner, id}) => {
     listingModal.onOpen();
     setPostInfo({
@@ -86,6 +95,7 @@ const Homepage = () => {
     })
   };
 
+  // show the admin dashboard if the user is an admin, otherwise show the homepage after login
   if (state.user.admin === "true") return <Navigate to="/admin-dashboard" />;
   return (
     <>

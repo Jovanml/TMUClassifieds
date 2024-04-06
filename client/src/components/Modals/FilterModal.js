@@ -15,28 +15,34 @@ import { MapPinIcon } from "@heroicons/react/24/outline";
 // Styles
 import './FilterModal.css';
 
+// resuable component for the modal of the filters
 const FilterModal = () => {
+  // store the filter modal states
   const filterModal = useFilterModal();
 
+  // get the query params from the url
   const urlLocation = useLocation();
   const navigate = useNavigate();
   let queryParams = new URLSearchParams(urlLocation.search);
   
 
+  // set the params of the filter
   const [location, setLocation] = useState('');
   const [priceMore, setPriceMore] = useState(0);
   const [priceLess, setPriceLess] = useState(10000);
   const [priceValue, setPriceValue] = useState([priceMore, priceLess])
 
 
+  // set the params based on the user input
   const handleOnChange = (e, newValue) => {
     setPriceValue(newValue);
     setPriceMore(newValue[0]);
     setPriceLess(newValue[1]);
   }
 
+  // on submit function handler when user submits filter form
   const onSubmit = () => {
-    if (location !== '') queryParams.set('location', location);
+    queryParams.set('location', location);
     queryParams.set('priceMore', priceMore);
     queryParams.set('priceLess', priceLess);
     const newSearch = `?${queryParams.toString()}`;
@@ -44,14 +50,16 @@ const FilterModal = () => {
     filterModal.onClose();
   }
 
+  // on clear button click function handler 
   const onClearAll = () => {
     setLocation('');
     setPriceMore(0);
     setPriceLess(10000);
-    setPriceValue([0, 10000])
+    setPriceValue([0, 10000]);
   }
   
 
+  // body content of the filter modal
   const bodyContent = (
     <div className='filter-body-container'>
       <div className='filter-body-location-container'>

@@ -11,9 +11,12 @@ import { ChatBubbleOvalLeftIcon } from '@heroicons/react/24/outline';
 // Styles 
 import './ListingModal.css'
 
+// reusable component for the modal of the listings
 const ListingModal = ({postInfo}) => {
+  // store the listing modal states
   const listingModal = useListingModal();
 
+  // body content of the listing modal
   const bodyContent = (
     <div className='body-container'>
       <div className='body-img-container'>
