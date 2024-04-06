@@ -54,6 +54,7 @@ This project was built using the following frameworks and libraries:
 * [![MongoDB][MongoDB]][MongoDB-url]
 * [![Tailwind][Tailwind]][Tailwind-url]
 * [![Material UI][MaterialUI]][MaterialUI-url]
+* [![Firebase][Firebase]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,4 +128,6 @@ Make sure you have the repo downloaded on your machine.
 [Tailwind-url]: https://tailwindcss.com/
 [MaterialUI]: https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white
 [MaterialUI-url]: https://mui.com/material-ui/
+[Firebase]: https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black
+[Firebase-url]: https://firebase.google.com/
 [product-screenshot]: images/tmufinds-screenshot.png
