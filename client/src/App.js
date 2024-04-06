@@ -1,20 +1,32 @@
+//Syles
 import './App.css';
+
+//Hooks
 import React, { useContext, useEffect } from 'react';
+
+//Router
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+//Components
 import Login from './components/Login/login';
 import AdminDashboard from './components/AdminDashboard/AdminDashboard';
-import { onAuthStateChanged } from '@firebase/auth';
-import { GlobalContext } from './contexts/GlobalContext';
-import { apiAuth, auth } from './services/auth';
 import Homepage from './components/Homepage/Homepage';
 import NewListing from './components/NewListing/NewListing';
 import Protected from './components/Miscellaneous/Protected';
 import MessageController from './components/Message/MessageController'
 import Banned from './components/Miscellaneous/Banned';
 
+//Functions
+import { onAuthStateChanged } from '@firebase/auth';
+import { GlobalContext } from './contexts/GlobalContext';
+import { apiAuth, auth } from './services/auth';
+
+
 function App() {
+    //Global Context update
     const { dispatch } = useContext(GlobalContext);
 
+    //update global context if auth state changes
     useEffect(() => {
         onAuthStateChanged(auth, async user => {
             if (user) {
