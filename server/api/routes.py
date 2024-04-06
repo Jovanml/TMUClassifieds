@@ -10,7 +10,7 @@ from flask_socketio import SocketIO,emit
 import datetime
 import os
 from dotenv import load_dotenv
-from helpers import verify_id_token
+from .helpers import verify_id_token
 import json
 
 #how to start the app
