@@ -1,23 +1,23 @@
-//import react hooks
+//Hooks
 import React, { useEffect, useState, useContext } from 'react'
 
-//import css
+//Styles
 import './Style/MessageComponent.css'
 
-//import child components
+//Components
 import MessagePage from './MessagePage'
 import MessageBar from './MessageBar'
 
-//import sockets
+//Websocket
 import { socket } from './socket'
 
-//import routing to read url query params
+//used for url query params
 import { useLocation } from 'react-router-dom'
 
-//import global context to get user state
+//Global Context
 import { GlobalContext } from '../../contexts/GlobalContext';
 
-//import header
+//Component
 import Header from '../Header/Header'
 
 function MessageController() {

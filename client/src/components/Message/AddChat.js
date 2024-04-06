@@ -1,11 +1,19 @@
+//Styles
 import './Style/AddChat.css'
 
+//Icons
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 
-function AddChat(props){
+function AddChat(props) {
+
+    //list of users
     let userList = props.userList
+
+    //list of current conversation
     let convoListUsers = Object.keys(props.usersConvo)
 
+    //handles adding a new chat
+    //updates pages state and closes modal
     function newChat(e) {
         props.setUsersConvo({
             ...props.usersConvo,

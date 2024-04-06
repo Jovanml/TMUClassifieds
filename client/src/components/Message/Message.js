@@ -1,8 +1,11 @@
+//Style
 import './Style/Message.css'
 
 function Message(props) {
+    //deconstructs message prop
     const { text, userID, createdAt } = props.message;
-    
+
+    //determin if the message is sent or recieved to update css
     const messageClass = userID === props.userID ? 'sent' : 'received';
   
     return (<>

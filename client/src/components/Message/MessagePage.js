@@ -14,14 +14,36 @@ import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
 
-function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, statePass, setUsersConvo }){
+function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, statePass, setUsersConvo }) {
+
+    //conversation ID
     const messageDBID = usersConvo[messageUserID]['id']
+
+    //name of current user in convo
     const messageName = usersConvo[messageUserID]['name']
+
+    //list of messages
     const [messages, setMessages] = useState([])
+
+    //state to flip if rerender required
     const [messageRef, setMessageRef] = useState(false)
+
+    //list of users used for add chat modal
     const [userList, setUserList] = useState([])
+
+    //if modal is open or not
     const [open, setOpen] = useState(false)
+
+    //synchronus way of checking if modal is open to stop unecessary requests
     const isOpen = useRef(false)
+
+    //current message in message input
+    const [msg, setMsg] = useState('')
+
+    //dummy ref used to auto scroll when message is sent
+    const dummy = useRef();
+
+    //modal styles
     const customStyles = {
       content: {
         top: '50%',
@@ -36,25 +58,32 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       },
     };
 
+    //opens the modsl
     const openModal = () => {
       isOpen.current = true
       setOpen(true)
     }
 
+    //closes the modal
     const closeModal = () => {
       isOpen.current = false
       setOpen(false)
     }
 
+    //updates messages when server emits a new message
     function messageRecieved(value){
       setMessages([...messages, value])
       setMessageRef(!messageRef)
     }
 
+    //listens for new message and adds it to the message state when recieved
     socket.on('message', messageRecieved)
 
+    //emits which chatroom the user is currently in
     socket.emit('chatRoom', {"convoID": messageDBID, 'userID': user['_id']})
 
+    //use effect that gets a list of all users for the add chat modal
+    //runs when modal is opened
     useEffect(() =>{
       async function getUserList(){
         fetch(`${process.env.REACT_APP_BACKEND_URL}/get/users?id=` + user['_id'], {
@@ -78,6 +107,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
 
+    //grabs last 25 messages from the db when a new convo is selected or a new message is recieved
     useEffect(() => {
       async function fetchData(){
         fetch(`${process.env.REACT_APP_BACKEND_URL}/get/messages?limit=25&id=` + messageDBID, {
@@ -100,11 +130,9 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messageRef, statePass])
 
-    const dummy = useRef();
-
-    const [msg, setMsg] = useState('')
-
+    //handles sending a message
     const sendMessage = async (e) => {
+      //sends the message to the db
       async function postData(){
         fetch(`${process.env.REACT_APP_BACKEND_URL}/post/messages`, {
           method: 'POST',
@@ -117,6 +145,8 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
             'userID': user['_id']
           })
         }).then(() => {
+          //updates states and emits to the server that a message was sent
+          //scrolls the page down to the latest message of not already there
           setMsg('')
           setMessageRef(!messageRef)
           socket.emit('message', {"convoID": messageDBID, 'text': msg, 'userID': user['_id']})
@@ -128,6 +158,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       }
       
       e.preventDefault();
+      //updates message state before posting to db so user sees update immediately
       setMessages([...messages,
         {
         'text': msg,
@@ -137,6 +168,7 @@ function MessagePage({ user, usersConvo, messageUserID, setMessageUserID, stateP
       postData()
     }
 
+    //handles when a user presses enter in the message input textbox
     const enterPress = (e) => {
       let key = window.event.keyCode;
       if (key === 13) {
